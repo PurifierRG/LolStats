@@ -6,7 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lol Stats</title>
 </head>
-<body>
-    
+<body style="background-color: black; color: rgba(185, 159, 159, 0.726);">
+    <p>Yo!</p>
+    <table style="border:1px solid">
+        {% for key in result %}
+        <tr>
+            <td style="border:1px solid"as>{{key}}</td>
+            <td style="border:1px solid">{{result[key]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

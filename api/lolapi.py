@@ -8,9 +8,13 @@ def getUser(username):
         response = requests.get(url, params={'api_key':api})
         resp = response.json()
         id = resp['id']
-        print(id)
-        return response.json()
+        accountId = resp['accountId']
+        puuid = resp['puuid']
+        resp = {'id': id, 'accountId': accountId, 'puuid': puuid}
+        return resp
     else:
         return "please fill the username"
 
 
+def getStats(user):
+    pass

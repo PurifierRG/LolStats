@@ -14,7 +14,7 @@ def home():
 def lol():
     username = request.args.get('username')
     response = lolapi.getUser(username)
-    return response
+    return render_template('index.html', result=response)
     
 #------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
