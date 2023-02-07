@@ -1,6 +1,7 @@
-import requests
+import requests, os
+from dotenv import load_dotenv
 
-api = 'RGAPI-34730d3b-1f44-4198-be68-ccc25e8eb469'
+api = os.getenv('API_KEY')
 
 def getUser(username):
     if username != '':
@@ -15,6 +16,3 @@ def getUser(username):
     else:
         return "please fill the username"
 
-
-def getStats(user):
-    pass
