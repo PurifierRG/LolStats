@@ -2,20 +2,20 @@ from flask import Flask, render_template, url_for, request
 from api import lolapi
 
 #------------------------------------------------------------------------------------------------------
-
 app = Flask(__name__)
 
 @app.route('/', methods=['POST','GET'])
 def home():
-    return "Hello World"
+    return render_template('home.html')
 
 
-@app.route('/lol', methods=['POST','GET'])
+@app.route('/lol', methods=['POST'])
 def lol():
-    username = request.args.get('username')
+    username = str(request.args.get('username'))
     response = lolapi.getUser(username)
-    return render_template('index.html', result=response)
-    
+    return render_template('index.html', result=response)  
+     
 #------------------------------------------------------------------------------------------------------
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
