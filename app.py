@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request
-from api import lolapi
+from api import UserID
 
 #------------------------------------------------------------------------------------------------------
 app = Flask(__name__)
@@ -11,9 +11,10 @@ def home():
 
 @app.route('/lol', methods=['POST'])
 def lol():
-    username = str(request.args.get('username'))
-    response = lolapi.getUser(username)
-    return render_template('index.html', result=response)  
+    username = str(request.form['username'])
+    region = str(request.form['region'])
+    response = UserID.getUser(username, region)
+    return render_template('index.html', result=response)
      
 #------------------------------------------------------------------------------------------------------
 
