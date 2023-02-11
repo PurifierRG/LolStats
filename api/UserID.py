@@ -1,12 +1,8 @@
-import requests, os
-from dotenv import load_dotenv
+import requests
 
-api = os.getenv('API_KEY')
-
-def getUser(username, region):
+def getUser(api, username, region):
     if username != '':
         url = f'https://{region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{username}'
-        print(url)
         response = requests.get(url, params={'api_key':api})
         resp = response.json()
         id = resp['id']
