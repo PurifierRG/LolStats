@@ -1,2 +1,6 @@
+# folders
 /venv
+/__pycache__
+
+# extentions
 .env

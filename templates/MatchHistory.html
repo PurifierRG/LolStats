@@ -4,9 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{Summoner}}: Match History</title>
+    <title>{{Summoner}}: Last Match</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='BaseStyle.css') }}">
 </head>
 <body>
-    
+    <div class="container">
+        <div class="teamWin">
+            <div class="status">WON</div>
+            {% for data in result %}
+                {% if data['Win'] %}
+                    <div class="item">
+                        {% for key,value in data.items() %}
+                            {% if key != "Win" %}
+                                <div>
+                                    <label>{{ key }}: </label>
+                                    <label>{{ value }}</label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="teamLose">
+            <div class="status">Lost</div>
+            {% for data in result %}
+                {% if data['Win'] == False %}
+                    <div class="item">
+                        {% for key,value in data.items() %}
+                            {% if key != "Win" %}
+                                <div>
+                                    <label>{{ key }}: </label>
+                                    <label>{{ value }}</label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>

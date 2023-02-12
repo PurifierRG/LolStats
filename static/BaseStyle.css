@@ -2,3 +2,45 @@
     background-color: black;
     color: rgb(206, 95, 30);
 }
+
+.container{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content:center;
+    padding: 15px;
+}
+
+.teamWin{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(0 143 77);
+    color: black;
+}
+
+.teamLose{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(0 134 165);
+    color: black;
+}
+
+.item{
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-around;
+    width: 300px;
+    height: 130px;
+    padding: 5px;
+    margin: 5px;
+    border: 2px solid rgb(255 178 5);
+    display: flex;
+}
+
+.status {
+    font-weight: bold;
+    margin: auto;
+    padding: 10px;
+    font-size: 25px;
+}

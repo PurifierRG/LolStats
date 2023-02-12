@@ -6,6 +6,7 @@ import os
 #------------------------------------------------------------------------------------------------------
 api = os.getenv('API_KEY')
 #------------------------------------------------------------------------------------------------------
+
 app = Flask(__name__)
 
 @app.route('/', methods=['POST','GET'])
@@ -17,9 +18,11 @@ def home():
 def lol():
     username = str(request.form['username'])
     region = str(request.form['region'])
+    shard = 'sea'
     response = UserID.getUser(api, username, region)
-    match_ids = MatchHistory.getMatchIDs(api, response['puuid'], 'sea')
-    return match_ids
+    match_ids = MatchHistory.getMatchIDs(api, shard, response['puuid'],)
+    match_details = MatchHistory.getMatchDetails(api, shard, match_ids)
+    return render_template('MatchHistory.html', Summoner=username, result=match_details)
      
 #------------------------------------------------------------------------------------------------------
 
