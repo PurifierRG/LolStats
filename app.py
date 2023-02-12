@@ -21,8 +21,10 @@ def lol():
     shard = 'sea'
     response = UserID.getUser(api, username, region)
     match_ids = MatchHistory.getMatchIDs(api, shard, response['puuid'],)
-    match_details = MatchHistory.getMatchDetails(api, shard, match_ids, type='UAT')
-    return render_template('MatchHistory.html', Summoner=username, result=match_details)
+    match_details = MatchHistory.getMatchDetails(api, shard, match_ids)
+    match_player_details = MatchHistory.getMatchPlayersDetails(match_details)
+    match_info = MatchHistory.getMatchInfo(match_details)
+    return render_template('MatchHistory.html', Summoner=username, result=match_player_details, Match_Details=match_info)
 
 
 #------------------------------------------------------------------------------------------------------
@@ -34,7 +36,7 @@ def loljson():
     shard = 'sea'
     response = UserID.getUser(api, username, region)
     match_ids = MatchHistory.getMatchIDs(api, shard, response['puuid'],)
-    match_details = MatchHistory.getMatchDetails(api, shard, match_ids, type='test')
+    match_details = MatchHistory.getMatchDetails(api, shard, match_ids)
     return match_details
      
 #------------------------------------------------------------------------------------------------------

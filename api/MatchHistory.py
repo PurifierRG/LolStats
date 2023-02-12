@@ -4,25 +4,22 @@ def getMatchIDs(api, shard, puuid):
     url = f"https://{shard}.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids"
     response = requests.get(url, params={'api_key':api})
     resp = response.json()
-    print(resp)
     return resp[0]
 
 
-def getMatchDetails(api, shard, matchID, type):
+def getMatchDetails(api, shard, matchID):
     url = f"https://{shard}.api.riotgames.com/lol/match/v5/matches/{matchID}"
     response = requests.get(url, params={'api_key':api})
     resp = response.json()
+    return resp
 
-    if type == 'test':
-        return resp
 
+def getMatchPlayersDetails(data):
     players_info = []
     player_data = {}
-    match_info = {}
-    match_info['Game Mode'] = resp['info']['gameMode']
-    match_info['Game Duration'] = resp['info']['gameDuration']/60
+    match_info = getMatchInfo(data)
 
-    for player in resp['info']['participants']:
+    for player in data['info']['participants']:
         player_data['Player Name'] = player['summonerName']
         url = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/champion/{player['championName']}.png"
         player_data['Champion Image'] = url
@@ -45,4 +42,11 @@ def getMatchDetails(api, shard, matchID, type):
         player_data = {}
 
     return players_info
-            
+
+
+def getMatchInfo(data):
+    match_info = {}
+    match_info['Game Mode'] = data['info']['gameMode']
+    match_info['Game Type'] = data['info']['gameType']
+    match_info['Game Duration'] = data['info']['gameDuration']/60
+    return match_info
