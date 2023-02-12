@@ -24,6 +24,8 @@ def getMatchDetails(api, shard, matchID, type):
 
     for player in resp['info']['participants']:
         player_data['Player Name'] = player['summonerName']
+        url = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/champion/{player['championName']}.png"
+        player_data['Champion Image'] = url
         player_data['Champion'] = player['championName']
         player_data['Damage To Champions'] = player['totalDamageDealtToChampions']
         player_data['Damage Taken'] = player['totalDamageTaken']
