@@ -37,7 +37,8 @@ def loljson():
     response = UserID.getUser(api, username, region)
     match_ids = MatchHistory.getMatchIDs(api, shard, response['puuid'],)
     match_details = MatchHistory.getMatchDetails(api, shard, match_ids)
-    return match_details
+    match_player_details = MatchHistory.getMatchPlayersDetails(match_details)
+    return match_player_details
      
 #------------------------------------------------------------------------------------------------------
 

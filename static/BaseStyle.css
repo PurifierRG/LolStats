@@ -14,6 +14,21 @@
     padding: 15px;
 }
 
+.status {
+    font-weight: bold;
+    margin: auto;
+    padding: 10px;
+    font-size: 25px;
+}
+
+.match {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    color: white;
+    border: 20px solid rgb(152 59 23);
+}
+
 .teamWin {
     display: flex;
     flex-direction: column;
@@ -28,6 +43,7 @@
     color: black;
 }
 
+
 .item {
     flex-direction: column;
     justify-content: space-around;
@@ -35,15 +51,8 @@
     align-content: space-around;
     width: 300px;
     height: 400px;
-    padding: 5px;
-    margin: 5px;
-    border: 2px solid rgb(255 178 5);
-    display: flex;
-}
-
-.status {
-    font-weight: bold;
-    margin: auto;
     padding: 10px;
-    font-size: 25px;
+    margin: 0px;
+    border: 5px solid rgb(255 178 5);
+    display: flex;
 }
