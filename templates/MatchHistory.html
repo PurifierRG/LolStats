@@ -2,70 +2,68 @@
 
 {% block Content %}
 
-<div class="container">
-
-    <div class="teamWin">
-        <div class="status">WON</div>
-        {% for key in result %}
-            <div class="match">
-            {% for data in key %}
-                {% if data['Win'] %}
-                    <div class="item">
-                        {% for key, value in data.items() %}
-                            {% if key == "Player Name" %}
-                                <div>
-                                    <label>{{ value }}<label>
-                                </div>                                
-                            {% elif key == "Champion Image" %}
-                                <div>
-                                    <!-- <label>{{ key }}: </label> -->
-                                    <label><img src = "{{ value }}"></label>
-                                </div>
-                            {% elif key != "Win" and key!= "Champion Image" %}
-                                <div>
-                                    <label>{{ key }}: </label>
-                                    <label>{{ value }}</label>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+<div class="content">
+    {% for i in range(len) %}
+        <div class="match">
+            {% for player in Player_Details[i] %}
+                {% if player['Player Name'] == user %}
+                    
+                    <div class="match-child match-info">
+                        <div class="match-info-child"><p>{{Match_Details[i]['Game Mode']}}</p></div>
+                        <div class="match-info-child"><p>{{Match_Details[i]['Game Time']}}</p></div>
+                        <div class="match-info-child"><p>{{Match_Details[i]['Game Type']}}</p></div>
                     </div>
-                {% endif %}    
-            {% endfor %}
-            </div>
-        {% endfor %}
-    </div>
 
-    <div class="teamLose">
-        <div class="status">LOST</div>
-        {% for key in result %}
-            <div class="match">
-            {% for data in key %}
-                {% if data['Win'] == False %}
-                    <div class="item">
-                        {% for key, value in data.items() %}
-                            {% if key == "Player Name" %}
-                                <div>
-                                    <label>{{ value }}<label>
-                                </div>                                
-                            {% elif key == "Champion Image" %}
-                                <div>
-                                    <!-- <label>{{ key }}: </label> -->
-                                    <label><img src = "{{ value }}"></label>
-                                </div>
-                            {% elif key != "Win" and key!= "Champion Image" %}
-                                <div>
-                                    <label>{{ key }}: </label>
-                                    <label>{{ value }}</label>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+                    <div class="match-child player-icon">
+                        <img src = "{{ player['Champion Image'] }}">
                     </div>
-                {% endif %}    
+                    
+                    <div class="match-child kda">
+                        <div class="kda-child kda-full">
+                            <p><b>{{player['Kills']}}/{{player['Deaths']}}/{{player['Assists']}}</b></p>
+                        </div>
+                        <div class="kda-child kda-small">
+                            <p>{{player['KDA']}}</p>
+                        </div>
+                        <div class="kda-child kda-damage-dealt">
+                            <p>{{player['Damage To Champions']}}</p>
+                        </div>
+                        <div class="kda-child kda-damage-taken">
+                            <p>{{player['Damage Taken']}}</p>
+                        </div>
+                        <div class="kda-child kda-cs">
+                            {{player['Total Minions Killed']}}
+                            ({{player['CS Per Minute']}})
+                        </div>
+                        <div class="kda-child kda-win">
+                            {% if player['Win']%}
+                            <p>Victory</p>
+                            {% else %}
+                            <p>Defeat</p>
+                            {% endif %}
+                        </div>    
+                    </div>
+                    
+                    <div class="match-child participants">
+                        <div class="match-participants-win">
+                            {% for player in Player_Details[i] %}
+                                {% if player['Win'] %}
+                                    <div class="match-participants-win-child">{{player['Player Name']}}</div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="match-participants-lose">
+                            {% for player in Player_Details[i] %}
+                                {% if player['Win'] == False %}
+                                    <div class="match-participants-lose-child">{{player['Player Name']}}</div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
             {% endfor %}
-            </div>
-        {% endfor %}
-    </div>
-
+        </div>
+    {% endfor %}
 </div>
 
 {% endblock Content %}

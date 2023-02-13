@@ -1,58 +1,204 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
-    background-color: black;
-    color: rgb(206, 95, 30);
+    --bgcolor: #194a50;
+    --nav-bg-color: #0c2431;
+    --color: #d37556;
+    --other-color: #d8a28c;
+    --other-color-2: #e1dad2;
+
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    background-color: var(--bgcolor);
+    color: var(--color);
     font-family: Inter;
 }
 
-.container {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    padding: 15px;
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
 }
 
-.status {
-    font-weight: bold;
-    margin: auto;
-    padding: 10px;
-    font-size: 25px;
+/* NAVBAR ------------------------------------------------------------------------------------------------------- */
+
+nav {
+    display: grid;
+    grid-template-columns: 0.5rem repeat(6, 1fr) 0.rem;
+    grid-template-areas: "space logo nav nav nav search search";
+    grid-gap: 15px;
+    min-height: 50px;
+    background-color: var(--nav-bg-color);
+    border: 2px outset #003b5b66;
+    border-radius: 20px;
+    font-weight: bolder;
+}
+
+.logo{
+    grid-area: logo;
+    justify-self: center;
+    align-self: center;
+}
+
+.nav{
+    grid-area: nav;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 50%;
+    align-self: center;
+    justify-self: center;
+    list-style: none;
+}
+    .nav li{
+        width: 100%;
+        justify-self: center;
+        text-align: center;
+    }
+    .nav li a{
+        display: block;
+        width: 100%;
+        text-decoration: none;
+    }
+    .nav li a:visited{
+        color: var(--color);
+    }
+    .nav li a:hover{
+        color: var(--other-color-2);
+    }
+
+.search{
+    grid-area: search;
+    justify-self: center;
+    align-self: center;
+}
+
+nav input[type="text"] {
+    border: 3px inset #0c2431e6;
+    border-radius: 5px;
+    height: 25px;
+    margin: 5px;
+}
+
+nav button {
+    height: 21px;
+    width: 43px;
+    background-color: #eccd00e6;
+    border-color: #ffd900;
+}
+
+/* -------------------------------------------------------------------------------------------------------------- */
+
+.small-select {
+    max-width: 45px;
+    height: 21px;
+}
+
+/* -------------------------------------------------------------------------------------------------------------- */
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 90vh;
+    max-height: min-content;
+    /* border: 5px solid black; */
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    height: 100%;
 }
 
 .match {
-    display: flex;
-    flex-direction: column;
-    margin-top: 15px;
-    color: white;
-    border: 20px solid rgb(152 59 23);
+    display: grid;
+    width: 70%;
+    height: 110px;
+    min-height: min-content;
+    margin: 5px;
+    border: 2px solid black;
+    align-self: center;
+    justify-self: center;
+    grid-template-columns: 1fr 0.3fr 1fr 1fr;
+    grid-template-areas: "match-data iconz kda players";
 }
+    .match-child{
+        min-height: min-content;
+    }
+    .match-info{
+        grid-area: match-data;
+        /* border: 2px solid black; */
+        display: grid;
+        grid-template-areas: 
+        "info" "info" "info";
+    }
+        .match-info-child{
+            justify-self: center;
+            align-self: center;
+        }
+    
+    .player-icon{
+        grid-area: iconz;
+        display: grid;
+        /* border: 2px solid black; */
+    }
+        .player-icon > img{
+            max-height:100%;
+            max-width: 100%;
+            justify-self: center;
+            align-self: center;
+        }
 
-.teamWin {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(0 143 77);
-    color: black;
-}
+    .kda{
+        grid-area: kda;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        "slot1 slot2"
+        "slot3 slot4"
+        "slot5 slot6";
+        /* border: 2px solid black; */
+    }
+        .kda-child{
+            justify-self: center;
+            align-self: center;
+        }
 
-.teamLose {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(0 134 165);
-    color: black;
-}
+        .kda-full{
+            grid-area: slot1;
+        }
+        .kda-small{
+            grid-area: slot3;
+        }
+        .kda-damage-dealt{
+            grid-area: slot2;
+        }
+        .kda-damage-taken{
+            grid-area: slot4;
+        }
+        .kda-cs{
+            grid-area: slot5;
+        }
+        .kda-win{
+            grid-area: slot6;
+        }
 
-
-.item {
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    align-content: space-around;
-    width: 300px;
-    height: 400px;
-    padding: 10px;
-    margin: 0px;
-    border: 5px solid rgb(255 178 5);
-    display: flex;
-}
+    .participants{
+        grid-area: players;
+        display: grid;
+        /* border: 2px solid black; */
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        "win lose"
+    }
+        .match-participants-win{
+            grid-area: win;
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+        .match-participants-lose{
+            grid-area: lose;
+            display: grid;
+            grid-template-columns: 1fr;
+        }
