@@ -1,77 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{Summoner}}: Last Match</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='BaseStyle.css') }}">
-</head>
-<body>
-    <div class="container">
+{% extends "Layout.html" %}
 
-        <div class="teamWin">
-            <div class="status">WON</div>
-            {% for key in result %}
-                <div class="match">
-                {% for data in key %}
-                    {% if data['Win'] %}
-                        <div class="item">
-                            {% for key, value in data.items() %}
-                                {% if key == "Player Name" %}
-                                    <div>
-                                        <label>{{ value }}<label>
-                                    </div>                                
-                                {% elif key == "Champion Image" %}
-                                    <div>
-                                        <!-- <label>{{ key }}: </label> -->
-                                        <label><img src = "{{ value }}"></label>
-                                    </div>
-                                {% elif key != "Win" and key!= "Champion Image" %}
-                                    <div>
-                                        <label>{{ key }}: </label>
-                                        <label>{{ value }}</label>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    {% endif %}    
-                {% endfor %}
-                </div>
+{% block Content %}
+
+<div class="container">
+
+    <div class="teamWin">
+        <div class="status">WON</div>
+        {% for key in result %}
+            <div class="match">
+            {% for data in key %}
+                {% if data['Win'] %}
+                    <div class="item">
+                        {% for key, value in data.items() %}
+                            {% if key == "Player Name" %}
+                                <div>
+                                    <label>{{ value }}<label>
+                                </div>                                
+                            {% elif key == "Champion Image" %}
+                                <div>
+                                    <!-- <label>{{ key }}: </label> -->
+                                    <label><img src = "{{ value }}"></label>
+                                </div>
+                            {% elif key != "Win" and key!= "Champion Image" %}
+                                <div>
+                                    <label>{{ key }}: </label>
+                                    <label>{{ value }}</label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}    
             {% endfor %}
-        </div>
-
-        <div class="teamLose">
-            <div class="status">LOST</div>
-            {% for key in result %}
-                <div class="match">
-                {% for data in key %}
-                    {% if data['Win'] == False %}
-                        <div class="item">
-                            {% for key, value in data.items() %}
-                                {% if key == "Player Name" %}
-                                    <div>
-                                        <label>{{ value }}<label>
-                                    </div>                                
-                                {% elif key == "Champion Image" %}
-                                    <div>
-                                        <!-- <label>{{ key }}: </label> -->
-                                        <label><img src = "{{ value }}"></label>
-                                    </div>
-                                {% elif key != "Win" and key!= "Champion Image" %}
-                                    <div>
-                                        <label>{{ key }}: </label>
-                                        <label>{{ value }}</label>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    {% endif %}    
-                {% endfor %}
-                </div>
-            {% endfor %}
-        </div>
-
+            </div>
+        {% endfor %}
     </div>
-</body>
-</html>
+
+    <div class="teamLose">
+        <div class="status">LOST</div>
+        {% for key in result %}
+            <div class="match">
+            {% for data in key %}
+                {% if data['Win'] == False %}
+                    <div class="item">
+                        {% for key, value in data.items() %}
+                            {% if key == "Player Name" %}
+                                <div>
+                                    <label>{{ value }}<label>
+                                </div>                                
+                            {% elif key == "Champion Image" %}
+                                <div>
+                                    <!-- <label>{{ key }}: </label> -->
+                                    <label><img src = "{{ value }}"></label>
+                                </div>
+                            {% elif key != "Win" and key!= "Champion Image" %}
+                                <div>
+                                    <label>{{ key }}: </label>
+                                    <label>{{ value }}</label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}    
+            {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock Content %}

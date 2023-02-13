@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST','GET'])
 def home():
-    return render_template('home.html')
+    return render_template('home.html', title='LolStat - Home')
 
 
 @app.route('/lol', methods=['POST'])
@@ -24,7 +24,7 @@ def lol():
     match_details = MatchHistory.getMatchDetails(api, shard, match_ids)
     match_player_details = MatchHistory.getMatchPlayersDetails(match_details)
     match_info = MatchHistory.getMatchInfo(match_details)
-    return render_template('MatchHistory.html', Summoner=username, result=match_player_details, Match_Details=match_info)
+    return render_template('MatchHistory.html', title=f'{username} - Match History', result=match_player_details, Match_Details=match_info)
 
 
 #------------------------------------------------------------------------------------------------------

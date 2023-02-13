@@ -1,35 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "Layout.html" %}
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='BaseStyle.css') }}">
-    <title>Home</title>
-</head>
-<body>
-    <form action="/lol" method="post">
-        <label for="username">Summoner</label>
-        <input type="text" name="username">
-        <select name="region">
-            <option value="sg2">Singapore</option>
-            <option value="na1">North America</option>
-            <option value="euw1">Europe West</option>
-            <option value="eun1">Europe Nordic & East</option>
-            <option value="jp1">Japan</option>
-            <option value="br1">Brazil</option>
-            <option value="la1">Latin America</option>
-            <option value="la2">Latin America</option>
-            <option value="tr1">Turkey</option>
-            <option value="ru">Russia</option>
-            <option value="ph2">Phillipines</option>
-            <option value="th2">Thailand</option>
-            <option value="tw2">Taiwan</option>
-            <option value="vn2">Vietnam</option>
-        </select>
-        <input type="submit" value="Check">
-        <input type="submit" formaction="/test" formmethod="post" value="Test">
-    </form>
-</body>
-</html>
+{% block Content %}
+
+<form action="/lol" method="post">
+    <label for="username">Summoner</label>
+    <input type="text" name="username">
+    <select name="region">
+        <option value="sg2">Singapore</option>
+        <option value="na1">North America</option>
+        <option value="euw1">Europe West</option>
+        <option value="eun1">Europe Nordic & East</option>
+        <option value="jp1">Japan</option>
+        <option value="br1">Brazil</option>
+        <option value="la1">Latin America</option>
+        <option value="la2">Latin America</option>
+        <option value="tr1">Turkey</option>
+        <option value="ru">Russia</option>
+        <option value="ph2">Phillipines</option>
+        <option value="th2">Thailand</option>
+        <option value="tw2">Taiwan</option>
+        <option value="vn2">Vietnam</option>
+    </select>
+    <input type="submit" value="Check">
+    <input type="submit" formaction="/test" formmethod="post" value="Test">
+</form>
+
+{% endblock Content %}
