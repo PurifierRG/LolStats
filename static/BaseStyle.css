@@ -53,9 +53,7 @@ nav {
     justify-self: center;
     list-style: none;
 }
-    .nav li{
-        width: 100%;
-        justify-self: center;
+    .nav li {
         text-align: center;
     }
     .nav li a{
