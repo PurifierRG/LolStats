@@ -201,7 +201,7 @@ nav button {
 
         .kda {
             grid-area: p-kda;
-            font-size: 1.5em;
+            font-size: 1.2em;
             display: grid;
             justify-content: space-around;
             justify-items: center;
