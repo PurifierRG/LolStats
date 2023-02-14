@@ -71,7 +71,6 @@ def getSummonerSpell(spellId):
         spellName = "Summoner_UltBookSmitePlaceholder"
     else:
         spellName = "None"
-    print(spellName)
     spellUrl = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/spell/{spellName}.png"
     return spellUrl
 
