@@ -114,27 +114,30 @@ nav button {
 
 .container {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(6,1fr);
+    grid-template-areas: "sidebar-left Main Main Main Main sidebar-right";
     height: 90vh;
     max-height: min-content;
     font-size: 1rem;
 }
 
 .content {
+    grid-area: Main;
+    background-color: #ffe497;
     width: 100%;
+    padding: 0.2rem;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, 1fr);
-    height: 100%;
 }
 
 .match {
     overflow: auto;
     display: grid;
-    width: 70%;
+    width: 100%;
+    background-color: #00101e;
     margin: 0.1rem;
     font-size: 0.8rem;
-    border: 0.15rem solid black;
+    border: 0.3rem outset #001a31;
     align-self: center;
     justify-self: center;
     grid-template-columns: 1fr 1fr 1fr 1fr;
