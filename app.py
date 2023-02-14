@@ -39,7 +39,7 @@ def loljson():
     match_details = MatchHistory.getMatchDetails(api, shard, match_ids)
     match_player_details = MatchHistory.getMatchPlayersDetails(match_details)
     match_info = MatchHistory.getMatchInfo(match_details)
-    return match_player_details
+    return match_details
      
 #------------------------------------------------------------------------------------------------------
 
