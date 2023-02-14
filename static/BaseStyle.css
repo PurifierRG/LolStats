@@ -106,8 +106,7 @@ nav button {
 }
 
 .icon-default{
-    max-height:100%;
-    max-width: 100%;
+    width: 100%;
     border-radius: 0.33rem;
     justify-self: center;
     align-self: center;
@@ -118,11 +117,13 @@ nav button {
 .container {
     display: grid;
     grid-template-columns: 1fr;
-    min-height: 90vh;
+    height: 90vh;
     max-height: min-content;
+    font-size: 1rem;
 }
 
 .content {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, 1fr);
@@ -130,11 +131,11 @@ nav button {
 }
 
 .match {
+    overflow: auto;
     display: grid;
-    font-size: 0.8rem;
     width: 70%;
-    height: 7rem;
     margin: 0.1rem;
+    font-size: 0.8rem;
     border: 0.15rem solid black;
     align-self: center;
     justify-self: center;
@@ -142,9 +143,11 @@ nav button {
     grid-template-areas: "match-data iconz stats players";
 }
     .match-child{
-        min-height: min-content;
+        min-width: 100%;
+        min-height: 100%;
     }
     .match-info{
+        width: 100%;
         grid-area: match-data;
         display: grid;
         grid-template-areas: 
@@ -156,6 +159,7 @@ nav button {
         }
     
     .player-icon{
+        width: 100%;
         grid-area: iconz;
         display: grid;
         grid-template-columns: repeat(7, 1fr);
@@ -165,7 +169,7 @@ nav button {
         "items items items items items items items";
     }
         .player-icon-child{
-            justify-self: center;
+            width: 100%;
             align-self: center;
             padding: 0.1rem;
         }
@@ -179,6 +183,7 @@ nav button {
             display: grid;
         }
             .summoner-spells-child{
+                width: 100%;
                 padding: 0.1rem;
             }
 
@@ -188,15 +193,18 @@ nav button {
             grid-template-columns: repeat(7, 1fr);
         }
             .items-child{
+                width: 100%;
                 padding: 0.1rem;
             }
+
         .kda{
             grid-area: p-kda;
-            font-size: 1rem;
+            font-size: 1.5em;
             display: grid;
             grid-template-columns: 1fr;
         }
             .kda-child{
+                width: 100%;
                 justify-self: center;
             }
 
@@ -208,6 +216,7 @@ nav button {
             }
     
     .match-player-stats{
+        width: 100%;
         grid-area: stats;
         display: grid;
         grid-template-columns: 1fr;
@@ -218,6 +227,7 @@ nav button {
         }
 
     .participants{
+        width: 100%;
         grid-area: players;
         display: grid;
         grid-template-columns: 1fr 1fr;
