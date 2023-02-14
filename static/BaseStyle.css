@@ -38,13 +38,13 @@ nav {
     font-weight: bolder;
 }
 
-.logo{
+.logo {
     grid-area: logo;
     justify-self: center;
     align-self: center;
 }
 
-.nav{
+.nav {
     grid-area: nav;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -56,19 +56,19 @@ nav {
     .nav li {
         text-align: center;
     }
-    .nav li a{
+    .nav li a {
         display: block;
         width: 100%;
         text-decoration: none;
     }
-    .nav li a:visited{
+    .nav li a:visited {
         color: var(--color);
     }
-    .nav li a:hover{
+    .nav li a:hover {
         color: var(--other-color-2);
     }
 
-.search{
+.search {
     grid-area: search;
     justify-self: center;
     align-self: center;
@@ -103,7 +103,7 @@ nav button {
     min-height: 21px;
 }
 
-.icon-default{
+.icon-default {
     width: 100%;
     border-radius: 0.33rem;
     justify-self: center;
@@ -140,120 +140,124 @@ nav button {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-areas: "match-data iconz stats players";
 }
-    .match-child{
+    .match-child {
         min-width: 100%;
         min-height: 100%;
     }
-    .match-info{
-        width: 100%;
+
+    .match-info {
         grid-area: match-data;
         display: grid;
-        grid-template-areas: 
-        "info" "info" "info";
+        grid-template-areas:
+            "info"
+            "info"
+            "info";
+        justify-content: space-around;
+        align-content: space-evenly;
     }
-        .match-info-child{
-            justify-self: center;
+        .match-info-child {
             align-self: center;
         }
     
-    .player-icon{
-        width: 100%;
+    .player-icon {
         grid-area: iconz;
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         grid-template-areas:
-        "picon picon spell runes p-kda p-kda p-kda"
-        "picon picon spell runes p-kda p-kda p-kda"
-        "items items items items items items items";
+            "picon picon spell runes p-kda p-kda p-kda"
+            "picon picon spell runes p-kda p-kda p-kda"
+            "items items items items items items items";
     }
-        .player-icon-child{
+        .player-icon-child {
             width: 100%;
             align-self: center;
             padding: 0.1rem;
         }
 
-        .champion-image{
+        .champion-image {
             grid-area: picon;
             display: grid;
         }
-        .summoner-spells{
+        .summoner-spells {
             grid-area: spell;
             display: grid;
         }
-            .summoner-spells-child{
+            .summoner-spells-child {
+                width: 100%;
                 justify-self: center;
                 padding: 0.1rem;
             }
 
-        .items{
+        .items {
             grid-area: items;
             display: grid;
             grid-template-columns: repeat(7, 1fr);
         }
-            .items-child{
+            .items-child {
+                width: 100%;
                 justify-self: center;
                 padding: 0.1rem;
             }
 
-        .kda{
+        .kda {
             grid-area: p-kda;
             font-size: 1.5em;
             display: grid;
-            grid-template-columns: 1fr;
+            justify-content: space-around;
+            justify-items: center;
         }
-            .kda-child{
+            .kda-child {
                 justify-self: center;
             }
 
-            .kda-full{
+            .kda-full {
                 align-self:end;
             }
-            .kda-small{
+            .kda-small {
                 align-self:baseline;
             }
     
-    .match-player-stats{
-        width: 100%;
+    .match-player-stats {
         grid-area: stats;
         display: grid;
-        grid-template-columns: 1fr;
+        align-content: space-evenly;
+        justify-content: space-around;
     }
-        .match-player-stats-child{
-            justify-self: center;
+        .match-player-stats-child {
             align-self: center;
         }
 
-    .participants{
+    .participants {
         width: 100%;
         grid-area: players;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-areas: 
-        "win lose"
+            "win lose"
     }
-        .participants-child{
+        .participants-child {
             justify-self: center;
             align-self: center;
             width: 100%;
             height: 100%;
         }
 
-        .match-participants-win{
+        .match-participants-win {
             grid-area: win;
             display: grid;
-            grid-template-columns: 1fr;
+            align-content: space-evenly;
         }
             .match-participants-win-child{
                 justify-self: left;
                 align-self: center;
             }
         
-        .match-participants-lose{
+        .match-participants-lose {
             grid-area: lose;
             display: grid;
-            grid-template-columns: 1fr;
+            align-content: space-evenly;
         }
-            .match-participants-lose-child{
+            .match-participants-lose-child {
                 justify-self: left;
                 align-self: center;
             }

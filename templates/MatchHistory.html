@@ -9,9 +9,9 @@
                 {% if player['Player Name'] == user %}
                     
                     <div class="match-child match-info">
-                        <div class="match-info-child"><p>{{Match_Details[i]['Game Mode']}}</p></div>
-                        <div class="match-info-child"><p>{{Match_Details[i]['Game Time']}}</p></div>
-                        <div class="match-info-child"><p>{{Match_Details[i]['Game Type']}}</p></div>
+                        <div class="match-info-child"><p>Game Mode: {{Match_Details[i]['Game Mode']}}</p></div>
+                        <div class="match-info-child"><p>Game Type: {{Match_Details[i]['Game Type']}}</p></div>
+                        <div class="match-info-child"><p>Duration: {{Match_Details[i]['Game Time']}}</p></div>
                     </div>
 
                     <div class="match-child player-icon">
@@ -36,20 +36,20 @@
                                 <p><b>{{player['Kills']}}/{{player['Deaths']}}/{{player['Assists']}}</b></p>
                             </div>
                             <div class="kda-child kda-small">
-                                <p>{{player['KDA']}}</p>
+                                <p>{{player['KDA']}} KDA</p>
                             </div>    
                         </div>
                     </div>
 
                     <div class="match-child match-player-stats">
                         <div class="match-player-stats-child damage-dealt">
-                            <p>{{player['Damage To Champions']}}</p>
+                            <p>Damage Dealt: {{player['Damage To Champions']}}</p>
                         </div>
                         <div class="match-player-stats-child damage-taken">
-                            <p>{{player['Damage Taken']}}</p>
+                            <p>Damage Taken: {{player['Damage Taken']}}</p>
                         </div>
                         <div class="match-player-stats-child creep-score">
-                            {{player['Total Minions Killed']}}
+                            CS: {{player['Total Minions Killed']}}
                             ({{player['CS Per Minute']}})
                         </div>
                         <div class="match-player-stats-child win-status">
