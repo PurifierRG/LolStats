@@ -36,6 +36,45 @@ def getMatchInfo(data):
     
     return match_info_list
 
+def getSummonerSpell(spellId):
+    if spellId == 21:
+        spellName = "SummonerBarrier"
+    elif spellId == 1:
+        spellName = "SummonerBoost"
+    elif spellId == 14:
+        spellName = "SummonerDot"
+    elif spellId == 3:
+        spellName = "SummonerExhaust"
+    elif spellId == 4:
+        spellName = "SummonerFlash"
+    elif spellId == 6:
+        spellName = "SummonerHaste"
+    elif spellId == 7:
+        spellName = "SummonerHeal"
+    elif spellId == 13:
+        spellName = "SummonerMana"
+    elif spellId == 30:
+        spellName = "SummonerPoroRecall" 
+    elif spellId == 31:
+        spellName = "SummonerPoroThrow"
+    elif spellId == 11:
+        spellName = "SummonerSmite"
+    elif spellId == 39:
+        spellName = "SummonerSnowURFSnowball_Mark"
+    elif spellId == 32:
+        spellName = "SummonerSnowball"
+    elif spellId == 12:
+        spellName = "SummonerTeleport"
+    elif spellId == 54:
+        spellName = "Summoner_UltBookPlaceholder"
+    elif spellId == 55:
+        spellName = "Summoner_UltBookSmitePlaceholder"
+    else:
+        spellName = "None"
+    print(spellName)
+    spellUrl = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/spell/{spellName}.png"
+    return spellUrl
+
 
 def getMatchPlayersDetails(data):
     match_info = getMatchInfo(data)
@@ -64,6 +103,8 @@ def getMatchPlayersDetails(data):
             player_data['item5'] = item5url
             item6url = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/item/{player['item6']}.png"
             player_data['item6'] = item6url
+            player_data['summoner1'] = getSummonerSpell(player['summoner1Id'])
+            player_data['summoner2'] = getSummonerSpell(player['summoner2Id'])
             player_data['Damage To Champions'] = player['totalDamageDealtToChampions']
             player_data['Damage Taken'] = player['totalDamageTaken']
             player_data['Lane Minions Killed'] = player['totalMinionsKilled']
