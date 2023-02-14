@@ -183,7 +183,7 @@ nav button {
             display: grid;
         }
             .summoner-spells-child{
-                width: 100%;
+                justify-self: center;
                 padding: 0.1rem;
             }
 
@@ -193,7 +193,7 @@ nav button {
             grid-template-columns: repeat(7, 1fr);
         }
             .items-child{
-                width: 100%;
+                justify-self: center;
                 padding: 0.1rem;
             }
 
@@ -204,7 +204,6 @@ nav button {
             grid-template-columns: 1fr;
         }
             .kda-child{
-                width: 100%;
                 justify-self: center;
             }
 
