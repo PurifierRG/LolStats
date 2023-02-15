@@ -9,82 +9,71 @@
                 {% if player['Player Name'] == user %}
                     
                     <div class="match-child match-info">
-                        <div class="match-info-child"><p>{{Match_Details[i]['Game Mode']}}</p></div>
-                        <div class="match-info-child"><p>{{Match_Details[i]['Game Time']}}</p></div>
-                        <div class="match-info-child"><p>{{Match_Details[i]['Game Type']}}</p></div>
+                        <div class="match-info-child"><p>Game Mode: {{Match_Details[i]['Game Mode']}}</p></div>
+                        <div class="match-info-child"><p>Game Type: {{Match_Details[i]['Game Type']}}</p></div>
+                        <div class="match-info-child"><p>Duration: {{Match_Details[i]['Game Time']}}</p></div>
                     </div>
 
                     <div class="match-child player-icon">
                         <div class="player-icon-child champion-image">
-                            <img src = "{{ player['Champion Image'] }}">
+                            <img class="icon-default" src = "{{ player['Champion Image'] }}">
                         </div>
                         <div class="player-icon-child summoner-spells">
-                            <ul>
-                                <li> <img src="{{ player['summoner1']}}"></li>
-                                <li> <img src="{{ player['summoner2']}}"></li>
-                            </ul>
-
+                            <img class="icon-default summoner-spells-child" src="{{ player['summoner1']}}">
+                            <img class="icon-default summoner-spells-child" src="{{ player['summoner2']}}">
+                        </div>
+                        <div class="player-icon-child runes">
+                            <img class="icon-default keystone" src="{{player['keystone']}}">
+                            <img class="icon-default secondaryStyle" src="{{player['secondaryStyle']}}">
                         </div>
                         <div class="player-icon-child items">
-                            <div class="items-child item0">
-                                <img src = "{{ player['item0']}}">
+                                <img class="icon-default items-child" src = "{{ player['item0']}}">
+                                <img class="icon-default items-child" src = "{{ player['item1']}}">
+                                <img class="icon-default items-child" src = "{{ player['item2']}}">
+                                <img class="icon-default items-child" src = "{{ player['item3']}}">
+                                <img class="icon-default items-child" src = "{{ player['item4']}}">
+                                <img class="icon-default items-child" src = "{{ player['item5']}}">
+                                <img class="icon-default items-child" src = "{{ player['item6']}}">
+                        </div>
+                        <div class="player-icon-child kda">
+                            <div class="kda-child kda-full">
+                                <p><b>{{player['Kills']}}/{{player['Deaths']}}/{{player['Assists']}}</b></p>
                             </div>
-                            <div class="items-child item1">
-                                <img src = "{{ player['item1']}}">
-                            </div>
-                            <div class="items-child item2">
-                                <img src = "{{ player['item2']}}">
-                            </div>
-                            <div class="items-child item3">
-                                <img src = "{{ player['item3']}}">
-                            </div>
-                            <div class="items-child item4">
-                                <img src = "{{ player['item4']}}">
-                            </div>
-                            <div class="items-child item5">
-                                <img src = "{{ player['item5']}}">
-                            </div>
-                            <div class="items-child item6">
-                                <img src = "{{ player['item6']}}">
-                            </div>
+                            <div class="kda-child kda-small">
+                                <p>{{player['KDA']}} KDA</p>
+                            </div>    
                         </div>
                     </div>
-                    
-                    <div class="match-child kda">
-                        <div class="kda-child kda-full">
-                            <p><b>{{player['Kills']}}/{{player['Deaths']}}/{{player['Assists']}}</b></p>
+
+                    <div class="match-child match-player-stats">
+                        <div class="match-player-stats-child damage-dealt">
+                            <p>Damage Dealt: {{player['Damage To Champions']}}</p>
                         </div>
-                        <div class="kda-child kda-small">
-                            <p>{{player['KDA']}}</p>
+                        <div class="match-player-stats-child damage-taken">
+                            <p>Damage Taken: {{player['Damage Taken']}}</p>
                         </div>
-                        <div class="kda-child kda-damage-dealt">
-                            <p>{{player['Damage To Champions']}}</p>
-                        </div>
-                        <div class="kda-child kda-damage-taken">
-                            <p>{{player['Damage Taken']}}</p>
-                        </div>
-                        <div class="kda-child kda-cs">
-                            {{player['Total Minions Killed']}}
+                        <div class="match-player-stats-child creep-score">
+                            CS: {{player['Total Minions Killed']}}
                             ({{player['CS Per Minute']}})
                         </div>
-                        <div class="kda-child kda-win">
+                        <div class="match-player-stats-child win-status">
                             {% if player['Win']%}
                             <p>Victory</p>
                             {% else %}
                             <p>Defeat</p>
                             {% endif %}
-                        </div>    
+                        </div>
                     </div>
                     
                     <div class="match-child participants">
-                        <div class="match-participants-win">
+                        <div class="participants-child match-participants-win">
                             {% for player in Player_Details[i] %}
                                 {% if player['Win'] %}
                                     <div class="match-participants-win-child">{{player['Player Name']}}</div>
                                 {% endif %}
                             {% endfor %}
                         </div>
-                        <div class="match-participants-lose">
+                        <div class="participants-child match-participants-lose">
                             {% for player in Player_Details[i] %}
                                 {% if player['Win'] == False %}
                                     <div class="match-participants-lose-child">{{player['Player Name']}}</div>

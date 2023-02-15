@@ -13,4 +13,3 @@ def getUser(api, username, region):
         return resp
     else:
         return "please fill the username"
-
