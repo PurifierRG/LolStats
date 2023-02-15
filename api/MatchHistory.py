@@ -125,7 +125,7 @@ def getChampImage(champName, version):
     url = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{champName}.png"
     return url
 
-def getKeystoneImage(rune_id, version):
+def getRuneImage(rune_id, version):
     url = f"https://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/runesReforged.json"
     
     response = requests.get(url)
@@ -156,8 +156,8 @@ def getMatchPlayersDetails(data, version):
             player_data['Player Name'] = player['summonerName']
             player_data['Champion Image'] = getChampImage(player['championName'], version)
             player_data['Champion'] = player['championName']
-            player_data['keystone'] = getKeystoneImage(player["perks"]["styles"][0]["selections"][0]["perk"], version)
-            player_data['secondaryStyle'] = getKeystoneImage(player["perks"]["styles"][1]['style'], version)
+            player_data['keystone'] = getRuneImage(player["perks"]["styles"][0]["selections"][0]["perk"], version)
+            player_data['secondaryStyle'] = getRuneImage(player["perks"]["styles"][1]['style'], version)
             player_data['item0'] = getItem(player['item0'], version)
             player_data['item1'] = getItem(player['item1'], version)
             player_data['item2'] = getItem(player['item2'], version)
