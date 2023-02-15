@@ -1,4 +1,5 @@
 import requests
+import json
 
 #------------------------------------------------------------------------------------------------------
 def getShard(region):
@@ -122,9 +123,27 @@ def getChampImage(champName, version):
     url = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{champName}.png"
     return url
 
+def getKeystoneImage(keystone_id, version):
+    url = f"https://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/runesReforged.json"
+    
+    response = requests.get(url)
+    data = json.loads(response.text)
+
+    for tree in data:
+        for slot in tree['slots']:
+            for rune in slot['runes']:
+                if rune['id'] == keystone_id:
+                    # keystone_name = rune['name']
+                    keystone_image = f"https://ddragon.leagueoflegends.com/cdn/img/{rune['icon']}"
+
+    return keystone_image
+
+
 def getMatchPlayersDetails(data, version):
     match_info = getMatchInfo(data)
     match_players_info = []
+
+    # print(data[0]['info']['participants'])
 
     for i in range(len(data)):
         players_info = []
@@ -134,6 +153,8 @@ def getMatchPlayersDetails(data, version):
             player_data['Player Name'] = player['summonerName']
             player_data['Champion Image'] = getChampImage(player['championName'], version)
             player_data['Champion'] = player['championName']
+            player_data['keystone'] = getKeystoneImage(player["perks"]["styles"][0]["selections"][0]["perk"], version)
+            # player_data['secondaryStyle'] = getKeystoneImage(player["perks"]["styles"][1]['style'], version)
             player_data['item0'] = getItem(player['item0'], version)
             player_data['item1'] = getItem(player['item1'], version)
             player_data['item2'] = getItem(player['item2'], version)
