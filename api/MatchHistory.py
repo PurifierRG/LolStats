@@ -1,6 +1,15 @@
 import requests
 
 #------------------------------------------------------------------------------------------------------
+def getVersion(api, region):
+    versionRegion = ''.join((x for x in region if not x.isdigit()))
+    response = requests.get(f"https://ddragon.leagueoflegends.com/realms/{versionRegion}.json", params={'api_key':api})
+    if response.status_code == 200:
+        data = response.json()
+        version = data['v']
+        return str(version)
+    else:
+        print(f"Error getting current version, status code: {response.status_code}")
 
 def getMatchIDs(api, shard, puuid):   
     url = f"https://{shard}.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids"
@@ -36,14 +45,14 @@ def getMatchInfo(data):
     
     return match_info_list
 
-def getItem(itemId):
+def getItem(itemId, version):
     if itemId == 0:
         itemUrl = "http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/champion.png"
     else:
-        itemUrl = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/item/{itemId}.png"
+        itemUrl = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/item/{itemId}.png"
     return itemUrl
 
-def getSummonerSpell(spellId):
+def getSummonerSpell(spellId, version):
     if spellId == 21:
         spellName = "SummonerBarrier"
     elif spellId == 1:
@@ -78,11 +87,14 @@ def getSummonerSpell(spellId):
         spellName = "Summoner_UltBookSmitePlaceholder"
     else:
         spellName = "None"
-    spellUrl = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/spell/{spellName}.png"
+    spellUrl = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/spell/{spellName}.png"
     return spellUrl
 
+def getChampImage(champName, version):
+    url = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{champName}.png"
+    return url
 
-def getMatchPlayersDetails(data):
+def getMatchPlayersDetails(data, version):
     match_info = getMatchInfo(data)
     match_players_info = []
 
@@ -92,18 +104,17 @@ def getMatchPlayersDetails(data):
 
         for player in data[i]['info']['participants']:
             player_data['Player Name'] = player['summonerName']
-            url = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/champion/{player['championName']}.png"
-            player_data['Champion Image'] = url
+            player_data['Champion Image'] = getChampImage(player['championName'], version)
             player_data['Champion'] = player['championName']
-            player_data['item0'] = getItem(player['item0'])
-            player_data['item1'] = getItem(player['item1'])
-            player_data['item2'] = getItem(player['item2'])
-            player_data['item3'] = getItem(player['item3'])
-            player_data['item4'] = getItem(player['item4'])
-            player_data['item5'] = getItem(player['item5'])
-            player_data['item6'] = getItem(player['item6'])
-            player_data['summoner1'] = getSummonerSpell(player['summoner1Id'])
-            player_data['summoner2'] = getSummonerSpell(player['summoner2Id'])
+            player_data['item0'] = getItem(player['item0'], version)
+            player_data['item1'] = getItem(player['item1'], version)
+            player_data['item2'] = getItem(player['item2'], version)
+            player_data['item3'] = getItem(player['item3'], version)
+            player_data['item4'] = getItem(player['item4'], version)
+            player_data['item5'] = getItem(player['item5'], version)
+            player_data['item6'] = getItem(player['item6'], version)
+            player_data['summoner1'] = getSummonerSpell(player['summoner1Id'], version)
+            player_data['summoner2'] = getSummonerSpell(player['summoner2Id'], version)
             player_data['Damage To Champions'] = player['totalDamageDealtToChampions']
             player_data['Damage Taken'] = player['totalDamageTaken']
             player_data['Lane Minions Killed'] = player['totalMinionsKilled']
