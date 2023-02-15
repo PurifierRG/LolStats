@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='BaseStyle.css') }}">
 
-    {% if title %}
-        <title>{{ title }}</title>
+    {% if PAGE_INFO['Title'] %}
+        <title>{{ PAGE_INFO['Title'] }}</title>
     {% else %}
         <title>LolStat</title>
     {% endif %}

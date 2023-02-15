@@ -3,37 +3,37 @@
 {% block Content %}
 
 <div class="content">
-    {% for i in range(len) %}
+    {% for i in range(PAGE_INFO['len']) %}
         <div class="match">
             {% for player in Player_Details[i] %}
-                {% if player['Player Name'] == user %}
+                {% if player['PlayerName'] == PAGE_INFO['Username'] %}
                     
                     <div class="match-child match-info">
-                        <div class="match-info-child"><p>Game Mode: {{Match_Details[i]['Game Mode']}}</p></div>
-                        <div class="match-info-child"><p>Game Type: {{Match_Details[i]['Game Type']}}</p></div>
-                        <div class="match-info-child"><p>Duration: {{Match_Details[i]['Game Time']}}</p></div>
+                        <div class="match-info-child"><p>Game Mode: {{Match_Details[i]['GameMode']}}</p></div>
+                        <div class="match-info-child"><p>Game Type: {{Match_Details[i]['GameType']}}</p></div>
+                        <div class="match-info-child"><p>Duration: {{Match_Details[i]['GameTime']}}</p></div>
                     </div>
 
                     <div class="match-child player-icon">
                         <div class="player-icon-child champion-image">
-                            <img class="icon-default" src = "{{ player['Champion Image'] }}">
+                            <img class="icon-default" src = "{{ player['ChampionImage'] }}">
                         </div>
-                        <div class="player-icon-child summoner-spells">
-                            <img class="icon-default summoner-spells-child" src="{{ player['summoner1']}}">
-                            <img class="icon-default summoner-spells-child" src="{{ player['summoner2']}}">
+                        <div class="player-icon-child summoner-spells-image">
+                            <img class="icon-default summoner-spells-child" src="{{ player['Summoner1']}}">
+                            <img class="icon-default summoner-spells-child" src="{{ player['Summoner2']}}">
                         </div>
-                        <div class="player-icon-child runes">
-                            <img class="icon-default keystone" src="{{player['keystone']}}">
-                            <img class="icon-default secondaryStyle" src="{{player['secondaryStyle']}}">
+                        <div class="player-icon-child runes-image">
+                            <img class="icon-default runes-image-child" src="{{player['Keystone']}}">
+                            <img class="icon-default runes-image-child" src="{{player['SecondaryRune']}}">
                         </div>
-                        <div class="player-icon-child items">
-                                <img class="icon-default items-child" src = "{{ player['item0']}}">
-                                <img class="icon-default items-child" src = "{{ player['item1']}}">
-                                <img class="icon-default items-child" src = "{{ player['item2']}}">
-                                <img class="icon-default items-child" src = "{{ player['item3']}}">
-                                <img class="icon-default items-child" src = "{{ player['item4']}}">
-                                <img class="icon-default items-child" src = "{{ player['item5']}}">
-                                <img class="icon-default items-child" src = "{{ player['item6']}}">
+                        <div class="player-icon-child items-image">
+                                <img class="icon-default items-child" src = "{{ player['Item0']}}">
+                                <img class="icon-default items-child" src = "{{ player['Item1']}}">
+                                <img class="icon-default items-child" src = "{{ player['Item2']}}">
+                                <img class="icon-default items-child" src = "{{ player['Item3']}}">
+                                <img class="icon-default items-child" src = "{{ player['Item4']}}">
+                                <img class="icon-default items-child" src = "{{ player['Item5']}}">
+                                <img class="icon-default items-child" src = "{{ player['Item6']}}">
                         </div>
                         <div class="player-icon-child kda">
                             <div class="kda-child kda-full">
@@ -47,14 +47,14 @@
 
                     <div class="match-child match-player-stats">
                         <div class="match-player-stats-child damage-dealt">
-                            <p>Damage Dealt: {{player['Damage To Champions']}}</p>
+                            <p>Damage Dealt: {{player['DamageToChampions']}}</p>
                         </div>
                         <div class="match-player-stats-child damage-taken">
-                            <p>Damage Taken: {{player['Damage Taken']}}</p>
+                            <p>Damage Taken: {{player['DamageTaken']}}</p>
                         </div>
                         <div class="match-player-stats-child creep-score">
-                            CS: {{player['Total Minions Killed']}}
-                            ({{player['CS Per Minute']}})
+                            CS: {{player['TotalMinionsKilled']}}
+                            ({{player['CSPerMinute']}})
                         </div>
                         <div class="match-player-stats-child win-status">
                             {% if player['Win']%}
@@ -69,14 +69,14 @@
                         <div class="participants-child match-participants-win">
                             {% for player in Player_Details[i] %}
                                 {% if player['Win'] %}
-                                    <div class="match-participants-win-child">{{player['Player Name']}}</div>
+                                    <div class="match-participants-win-child"><a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
                                 {% endif %}
                             {% endfor %}
                         </div>
                         <div class="participants-child match-participants-lose">
                             {% for player in Player_Details[i] %}
                                 {% if player['Win'] == False %}
-                                    <div class="match-participants-lose-child">{{player['Player Name']}}</div>
+                                    <div class="match-participants-lose-child"><a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
                                 {% endif %}
                             {% endfor %}
                         </div>

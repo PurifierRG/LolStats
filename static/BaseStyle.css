@@ -116,7 +116,6 @@ nav button {
     display: grid;
     grid-template-columns: repeat(6,1fr);
     grid-template-areas: "sidebar-left Main Main Main Main sidebar-right";
-    height: 90vh;
     max-height: min-content;
     font-size: 1rem;
 }
@@ -181,22 +180,32 @@ nav button {
             grid-area: picon;
             display: grid;
         }
-        .summoner-spells {
+        .summoner-spells-image {
             grid-area: spell;
             display: grid;
         }
-            .summoner-spells-child {
+            .summoner-spells-image-child {
+                width: 100%;
+                justify-self: center;
+                padding: 0.1rem;
+            }
+        
+        .runes-image{
+            grid-area: runes;
+            display: grid;
+        }
+            .rune-image-child{
                 width: 100%;
                 justify-self: center;
                 padding: 0.1rem;
             }
 
-        .items {
+        .items-image {
             grid-area: items;
             display: grid;
             grid-template-columns: repeat(7, 1fr);
         }
-            .items-child {
+            .items-image-child {
                 width: 100%;
                 justify-self: center;
                 padding: 0.1rem;
@@ -224,7 +233,8 @@ nav button {
         grid-area: stats;
         display: grid;
         align-content: space-evenly;
-        justify-content: space-around;
+        justify-content: start;
+        padding-left: 3rem;
     }
         .match-player-stats-child {
             align-self: center;
@@ -243,6 +253,14 @@ nav button {
             align-self: center;
             width: 100%;
             height: 100%;
+        }
+
+        .participants a {
+            text-decoration: none;
+            color: var(--color);
+        }
+        .participants a:hover {
+            text-decoration: underline;
         }
 
         .match-participants-win {
