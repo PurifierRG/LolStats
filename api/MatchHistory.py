@@ -4,7 +4,7 @@ import requests
 
 def getMatchIDs(api, shard, puuid):   
     url = f"https://{shard}.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids"
-    response = requests.get(url, params={'api_key':api, 'count':5})
+    response = requests.get(url, params={'api_key':api, 'count':10})
     resp = response.json()
     return resp
 
@@ -78,7 +78,6 @@ def getSummonerSpell(spellId):
         spellName = "Summoner_UltBookSmitePlaceholder"
     else:
         spellName = "None"
-    print(spellName)
     spellUrl = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/spell/{spellName}.png"
     return spellUrl
 
