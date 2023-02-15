@@ -19,7 +19,7 @@ def lol():
     username = str(request.form['username'])
     region = str(request.form['region'])
     version = MatchHistory.getVersion(api, region)
-    shard = 'sea'
+    shard = MatchHistory.getShard(region)
     response = UserID.getUser(api, username, region)
     match_ids = MatchHistory.getMatchIDs(api, shard, response['puuid'],)
     match_details = MatchHistory.getMatchDetails(api, shard, match_ids)
