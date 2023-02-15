@@ -36,6 +36,13 @@ def getMatchInfo(data):
     
     return match_info_list
 
+def getItem(itemId):
+    if itemId == 0:
+        itemUrl = "http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/champion.png"
+    else:
+        itemUrl = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/item/{itemId}.png"
+    return itemUrl
+
 def getSummonerSpell(spellId):
     if spellId == 21:
         spellName = "SummonerBarrier"
@@ -89,20 +96,13 @@ def getMatchPlayersDetails(data):
             url = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/champion/{player['championName']}.png"
             player_data['Champion Image'] = url
             player_data['Champion'] = player['championName']
-            item0url = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/item/{player['item0']}.png"
-            player_data['item0'] = item0url
-            item1url = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/item/{player['item1']}.png"
-            player_data['item1'] = item1url
-            item2url = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/item/{player['item2']}.png"
-            player_data['item2'] = item2url
-            item3url = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/item/{player['item3']}.png"
-            player_data['item3'] = item3url
-            item4url = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/item/{player['item4']}.png"
-            player_data['item4'] = item4url
-            item5url = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/item/{player['item5']}.png"
-            player_data['item5'] = item5url
-            item6url = f"http://ddragon.leagueoflegends.com/cdn/13.3.1/img/item/{player['item6']}.png"
-            player_data['item6'] = item6url
+            player_data['item0'] = getItem(player['item0'])
+            player_data['item1'] = getItem(player['item1'])
+            player_data['item2'] = getItem(player['item2'])
+            player_data['item3'] = getItem(player['item3'])
+            player_data['item4'] = getItem(player['item4'])
+            player_data['item5'] = getItem(player['item5'])
+            player_data['item6'] = getItem(player['item6'])
             player_data['summoner1'] = getSummonerSpell(player['summoner1Id'])
             player_data['summoner2'] = getSummonerSpell(player['summoner2Id'])
             player_data['Damage To Champions'] = player['totalDamageDealtToChampions']
