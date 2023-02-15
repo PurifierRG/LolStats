@@ -18,11 +18,12 @@ def home():
 def lol():
     username = str(request.form['username'])
     region = str(request.form['region'])
-    shard = 'sea'
+    version = MatchHistory.getVersion(api, region)
+    shard = MatchHistory.getShard(region)
     response = UserID.getUser(api, username, region)
     match_ids = MatchHistory.getMatchIDs(api, shard, response['puuid'],)
     match_details = MatchHistory.getMatchDetails(api, shard, match_ids)
-    match_player_details = MatchHistory.getMatchPlayersDetails(match_details)
+    match_player_details = MatchHistory.getMatchPlayersDetails(match_details, version)
     match_info = MatchHistory.getMatchInfo(match_details)
     return render_template('MatchHistory.html', title=f'{username} - Match History', Player_Details=match_player_details, Match_Details=match_info, user=response['name'], len=len(match_player_details))
 
