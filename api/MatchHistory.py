@@ -26,7 +26,7 @@ def getShard(region):
     if shard:
         return shard
     else:
-        print('Unable to find shard for region:', region)
+        print(f"Unable to find shard for region: {region}")
 
 
 def getVersion(api, region):
@@ -57,6 +57,23 @@ def getMatchDetails(api, shard, matchID):
     
     return result
 
+    
+def getRank(api, id, region):
+    rankUrl = f"https://{region}.api.riotgames.com/lol/league/v4/entries/by-summoner/{id}"
+    rankResponse = requests.get(rankUrl, params={'api_key':api})
+    rankResp = rankResponse.json()
+    flexTier = rankResp[0]['tier']
+    flexRank = rankResp[0]['rank']
+    soloTier = rankResp[1]['tier']
+    soloRank = rankResp[1]['rank']
+    rankResp = {'soloTier': soloTier, 'soloRank': soloRank, 'flexTier': flexTier, 'flexRank': flexRank}
+    url = {
+        'soloUrl': f"https://leagueoflegends.fandom.com/wiki/Rank_(League_of_Legends)?file=Season_2022_-_{rankResp['soloRank']}.png",
+        'flexUrl': f"https://leagueoflegends.fandom.com/wiki/Rank_(League_of_Legends)?file=Season_2022_-_{rankResp['flexRank']}.png"
+    }
+    return url
+
+
 #------------------------------------------------------------------------------------------------------
 
 def getMatchInfo(data):
@@ -80,41 +97,27 @@ def getItem(itemId, version):
         itemUrl = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/item/{itemId}.png"
     return itemUrl
 
+SPELL_MAP = {
+    1: "SummonerBoost",
+    3: "SummonerExhaust",
+    4: "SummonerFlash",
+    6: "SummonerHaste",
+    7: "SummonerHeal",
+    11: "SummonerSmite",
+    12: "SummonerTeleport",
+    13: "SummonerMana",
+    14: "SummonerDot",
+    21: "SummonerBarrier",
+    30: "SummonerPoroRecall",
+    31: "SummonerPoroThrow",
+    32: "SummonerSnowball",
+    39: "SummonerSnowURFSnowball_Mark",
+    54: "Summoner_UltBookPlaceholder",
+    55: "Summoner_UltBookSmitePlaceholder"
+}
+
 def getSummonerSpell(spellId, version):
-    if spellId == 21:
-        spellName = "SummonerBarrier"
-    elif spellId == 1:
-        spellName = "SummonerBoost"
-    elif spellId == 14:
-        spellName = "SummonerDot"
-    elif spellId == 3:
-        spellName = "SummonerExhaust"
-    elif spellId == 4:
-        spellName = "SummonerFlash"
-    elif spellId == 6:
-        spellName = "SummonerHaste"
-    elif spellId == 7:
-        spellName = "SummonerHeal"
-    elif spellId == 13:
-        spellName = "SummonerMana"
-    elif spellId == 30:
-        spellName = "SummonerPoroRecall" 
-    elif spellId == 31:
-        spellName = "SummonerPoroThrow"
-    elif spellId == 11:
-        spellName = "SummonerSmite"
-    elif spellId == 39:
-        spellName = "SummonerSnowURFSnowball_Mark"
-    elif spellId == 32:
-        spellName = "SummonerSnowball"
-    elif spellId == 12:
-        spellName = "SummonerTeleport"
-    elif spellId == 54:
-        spellName = "Summoner_UltBookPlaceholder"
-    elif spellId == 55:
-        spellName = "Summoner_UltBookSmitePlaceholder"
-    else:
-        spellName = "None"
+    spellName = SPELL_MAP.get(spellId, "None")
     spellUrl = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/spell/{spellName}.png"
     return spellUrl
 
