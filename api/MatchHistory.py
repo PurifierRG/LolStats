@@ -1,5 +1,4 @@
 import requests
-import json
 
 #------------------------------------------------------------------------------------------------------
 def getShard(region):
@@ -127,19 +126,15 @@ def getKeystoneImage(rune_id, version):
     url = f"https://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/runesReforged.json"
     
     response = requests.get(url)
-    rune_data = json.loads(response.text)
-
-    rune_found = False
+    rune_data = response.json()
 
     for tree in rune_data:
         if tree['id'] == rune_id:
-            rune_found = True
             rune_image = f"http://ddragon.leagueoflegends.com/cdn/img/{tree['icon']}"
             return rune_image
         for slot in tree['slots']:
             for rune in slot['runes']:
                 if rune['id'] == rune_id:
-                    # keystone_name = rune['name']
                     rune_image = f"https://ddragon.leagueoflegends.com/cdn/img/{rune['icon']}"
                     return rune_image
 
