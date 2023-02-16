@@ -69,14 +69,18 @@
                         <div class="participants-child match-participants-win">
                             {% for player in Player_Details[i] %}
                                 {% if player['Win'] %}
-                                    <div class="match-participants-win-child"><a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
+                                    <div class="match-participants-win-child">
+                                        <img src="{{player['ChampionImage']}}">
+                                        <a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
                                 {% endif %}
                             {% endfor %}
                         </div>
                         <div class="participants-child match-participants-lose">
                             {% for player in Player_Details[i] %}
                                 {% if player['Win'] == False %}
-                                    <div class="match-participants-lose-child"><a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
+                                    <div class="match-participants-lose-child">
+                                        <img src="{{player['ChampionImage']}}">
+                                        <a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
                                 {% endif %}
                             {% endfor %}
                         </div>

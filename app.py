@@ -3,6 +3,7 @@ from api import MatchHistory as MH
 from helpers import GenericImages as GI
 from helpers import RegionDetails as RD
 from helpers import UserID as UID
+from helpers import cache
 from dotenv import load_dotenv
 import os
 
