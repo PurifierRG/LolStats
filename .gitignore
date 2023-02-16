@@ -4,3 +4,4 @@ __pycache__/
 
 # extentions
 .env
+lol_api_cache.sqlite

@@ -1,5 +1,6 @@
 import requests
 from helpers import GenericImages as GI
+from helpers import cache
 
 #------------------------------------------------------------------------------------------------------
 

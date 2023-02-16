@@ -1,4 +1,5 @@
 import requests
+from helpers import cache
 
 #------------------------------------------------------------------------------------------------------
 
@@ -37,17 +38,23 @@ def getRuneImage(rune_id, version):
     url = f"https://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/runesReforged.json"
     
     response = requests.get(url)
+    if response.status_code != 200:
+        raise ValueError(f"Failed to retrieve rune data: {response.status_code}")
+    
     rune_data = response.json()
 
+    rune_images = {}
+
     for tree in rune_data:
-        if tree['id'] == rune_id:
-            rune_image = f"http://ddragon.leagueoflegends.com/cdn/img/{tree['icon']}"
-            return rune_image
+        rune_images[tree['id']] = f"http://ddragon.leagueoflegends.com/cdn/img/{tree['icon']}"
         for slot in tree['slots']:
             for rune in slot['runes']:
-                if rune['id'] == rune_id:
-                    rune_image = f"https://ddragon.leagueoflegends.com/cdn/img/{rune['icon']}"
-                    return rune_image
+                rune_images[rune['id']] = f"https://ddragon.leagueoflegends.com/cdn/img/{rune['icon']}"
+
+    if rune_id not in rune_images:
+        raise ValueError(f"Invalid rune id: {rune_id}")
+
+    return rune_images.get(rune_id)
 
 #------------------------------------------------------------------------------------------------------
 
