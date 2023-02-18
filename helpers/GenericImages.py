@@ -42,7 +42,6 @@ def getRuneImage(rune_id, version):
         raise ValueError(f"Failed to retrieve rune data: {response.status_code}")
     
     rune_data = response.json()
-
     rune_images = {}
 
     for tree in rune_data:
