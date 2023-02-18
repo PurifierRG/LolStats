@@ -4,10 +4,7 @@ from helpers import GenericImages as GI
 from helpers import RegionDetails as RD
 from helpers import UserID as UID
 from helpers import cache
-from dotenv import load_dotenv
 import os
-
-from helpers import UserID
 
 #------------------------------------------------------------------------------------------------------
 api = os.getenv('API_KEY')

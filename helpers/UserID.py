@@ -45,18 +45,6 @@ def getRank(api, id, region):
     soloUrl = constructRankUrl(soloRank)
     flexUrl = constructRankUrl(flexRank)
 
-    # flexTier = rankResp[0]['tier']
-    # flexRank = rankResp[0]['rank']
-    # soloTier = rankResp[1]['tier']
-    # soloRank = rankResp[1]['rank']
-
-    # rankResp = {'SoloTier': soloTier, 'SoloRank': soloRank, 'FlexTier': flexTier, 'FlexRank': flexRank}
-    # url = {
-    #     'SoloUrl': f"https://leagueoflegends.fandom.com/wiki/Rank_(League_of_Legends)?file=Season_2022_-_{rankResp['SoloRank']}.png",
-    #     'FlexUrl': f"https://leagueoflegends.fandom.com/wiki/Rank_(League_of_Legends)?file=Season_2022_-_{rankResp['FlexRank']}.png"
-    # }
-    # return url
-
     return {'SoloTier': soloTier, 'SoloRank': soloRank, 'SoloUrl': soloUrl, 'FlexTier': flexTier, 'FlexRank': flexRank, 'FlexUrl': flexUrl}
 
 
@@ -65,4 +53,5 @@ def constructRankUrl(rank):
         return ''
 
     return f"https://leagueoflegends.fandom.com/wiki/Rank_(League_of_Legends)?file=Season_2022_-_{rank}.png"
+
 #------------------------------------------------------------------------------------------------------
