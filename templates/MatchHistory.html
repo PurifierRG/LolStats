@@ -66,21 +66,19 @@
                     </div>
                     
                     <div class="match-child participants">
-                        <div class="participants-child match-participants-win">
+                        <div class="participants-child participants-win">
                             {% for player in Player_Details[i] %}
                                 {% if player['Win'] %}
-                                    <div class="match-participants-win-child">
-                                        <!-- <img src="{{player['ChampionImage']}}"> -->
-                                        <a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
+                                    <div class="participants-win-child participant-icon"><img class="icon-default" src="{{player['ChampionImage']}}"></div>
+                                    <div class="participants-win-child participant-name"><a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
                                 {% endif %}
                             {% endfor %}
                         </div>
-                        <div class="participants-child match-participants-lose">
+                        <div class="participants-child participants-lose">
                             {% for player in Player_Details[i] %}
                                 {% if player['Win'] == False %}
-                                    <div class="match-participants-lose-child">
-                                        <!-- <img src="{{player['ChampionImage']}}"> -->
-                                        <a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
+                                    <div class="participants-lose-child participant-icon"><img class="icon-default" src="{{player['ChampionImage']}}"></div>
+                                    <div class="participants-lose-child participant-name"><a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
                                 {% endif %}
                             {% endfor %}
                         </div>

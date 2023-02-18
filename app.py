@@ -1,12 +1,14 @@
 from flask import Flask, render_template, url_for, redirect, request
+import os
+from dotenv import load_dotenv
 from api import MatchHistory as MH
 from helpers import GenericImages as GI
 from helpers import RegionDetails as RD
 from helpers import UserID as UID
 from helpers import cache
-import os
 
 #------------------------------------------------------------------------------------------------------
+load_dotenv()
 api = os.getenv('API_KEY')
 #------------------------------------------------------------------------------------------------------
 
