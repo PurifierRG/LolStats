@@ -70,7 +70,7 @@
                             {% for player in Player_Details[i] %}
                                 {% if player['Win'] %}
                                     <div class="match-participants-win-child">
-                                        <img src="{{player['ChampionImage']}}">
+                                        <!-- <img src="{{player['ChampionImage']}}"> -->
                                         <a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
                                 {% endif %}
                             {% endfor %}
@@ -79,7 +79,7 @@
                             {% for player in Player_Details[i] %}
                                 {% if player['Win'] == False %}
                                     <div class="match-participants-lose-child">
-                                        <img src="{{player['ChampionImage']}}">
+                                        <!-- <img src="{{player['ChampionImage']}}"> -->
                                         <a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
                                 {% endif %}
                             {% endfor %}
