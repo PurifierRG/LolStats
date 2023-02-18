@@ -4,7 +4,7 @@
 
 <div class="content">
     {% for i in range(PAGE_INFO['len']) %}
-        <div class="match">
+        <div class="match" id="match-{{i}}">
             {% for player in Player_Details[i] %}
                 {% if player['PlayerName'] == PAGE_INFO['Username'] %}
                     
@@ -58,9 +58,11 @@
                         </div>
                         <div class="match-player-stats-child win-status">
                             {% if player['Win']%}
-                            <p>Victory</p>
+                                <p>Victory</p>
+                                <script> ChangeMatchColour('win', {{i}}) </script>
                             {% else %}
-                            <p>Defeat</p>
+                                <p>Defeat</p>
+                                <script> ChangeMatchColour('lose', {{i}}) </script>
                             {% endif %}
                         </div>
                     </div>
@@ -83,6 +85,7 @@
                             {% endfor %}
                         </div>
                     </div>
+
                 {% endif %}
             {% endfor %}
         </div>

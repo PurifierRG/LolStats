@@ -1,11 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
-    --bgcolor: #194a50;
-    --nav-bg-color: #0c2431;
-    --color: #d37556;
-    --other-color: #d8a28c;
-    --other-color-2: #e1dad2;
+    --bgcolor: rgb(25 74 80);
+    --nav-bg-color: rgb(12 36 49);
+    --color: rgb(211 117 86);
+    --other-color: rgb(216 162 140);
+    --other-color-2: rgb(255 240 223);
+    --secondary-color: rgb(255 212 88);
+
+    --win-color: rgb(0 27 41);
+    --win-color-br: rgb(0 41 62);
+    --lose-color: rgb(48 3 3);
+    --lose-color-br: rgb(68 0 0);
+    --button-color: rgb(236 205 0 / 90%);
+    --button-color-br: rgb(255 217 0);
 
     margin: 0px;
     padding: 0px;
@@ -90,8 +98,8 @@ nav button {
     height: 1.4rem;
     min-height: 21px;
     min-width: 43px;
-    background-color: #eccd00e6;
-    border-color: #ffd900;
+    background-color: var(--button-color);
+    border-color: var(--button-color-br);
 }
 
 /* Generic Stuff ------------------------------------------------------------------------------------------------ */
@@ -113,6 +121,7 @@ nav button {
 /* -------------------------------------------------------------------------------------------------------------- */
 
 .container {
+    color: var(--other-color-2);
     display: grid;
     grid-template-columns: repeat(6,1fr);
     grid-template-areas: "sidebar-left Main Main Main Main sidebar-right";
@@ -122,8 +131,9 @@ nav button {
 
 .content {
     grid-area: Main;
-    background-color: #ffe497;
+    background-color: var(--secondary-color);
     width: 100%;
+    margin-top: 2rem;
     padding: 0.2rem;
     display: grid;
     grid-template-columns: 1fr;
@@ -133,10 +143,9 @@ nav button {
     overflow: auto;
     display: grid;
     width: 100%;
-    background-color: #00101e;
     margin: 0.1rem;
     font-size: 0.8rem;
-    border: 0.3rem outset #001a31;
+    border: 0.3rem outset;
     align-self: center;
     justify-self: center;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -146,6 +155,14 @@ nav button {
         overflow: auto;
         min-width: 100%;
         min-height: 100%;
+    }
+    .match-win {
+        background-color: var(--win-color);
+        border-color: var(--win-color-br);
+    }
+    .match-lose {
+        background-color: var(--lose-color);
+        border-color: var(--lose-color-br);
     }
 
     .match-info {
@@ -277,7 +294,7 @@ nav button {
 
         .participants a {
             text-decoration: none;
-            color: var(--color);
+            color: var(--other-color-2);
         }
         .participants a:hover {
             text-decoration: underline;
