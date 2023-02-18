@@ -29,7 +29,6 @@ def getRank(api, id, region):
         raise ValueError('API call failed')
     
     rankResp = rankResponse.json()
-
     soloTier = 'Unranked'
     soloRank = ''
     flexTier = 'Unranked'
