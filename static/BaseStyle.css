@@ -143,6 +143,7 @@ nav button {
     grid-template-areas: "match-data iconz stats players";
 }
     .match-child {
+        overflow: auto;
         min-width: 100%;
         min-height: 100%;
     }
@@ -155,7 +156,7 @@ nav button {
             "info"
             "info";
         justify-content: space-around;
-        align-content: space-evenly;
+        align-content: stretch;
     }
         .match-info-child {
             align-self: center;
@@ -232,7 +233,7 @@ nav button {
     .match-player-stats {
         grid-area: stats;
         display: grid;
-        align-content: space-evenly;
+        align-content: stretch;
         justify-content: start;
         padding-left: 3rem;
     }
@@ -251,8 +252,27 @@ nav button {
         .participants-child {
             justify-self: center;
             align-self: center;
+            display: grid;
+            grid-template-columns: 1fr 4fr;
             width: 100%;
             height: 100%;
+            align-items: center;
+            align-content: stretch;
+        }
+
+        .participants-win {
+            grid-area: win;
+        }
+        .participants-lose {
+            grid-area: lose;
+        }
+        
+        .participant-icon {
+            width: 100%;
+        }
+        .participant-name {
+            width: 100%;
+            overflow: hidden;
         }
 
         .participants a {
@@ -262,23 +282,3 @@ nav button {
         .participants a:hover {
             text-decoration: underline;
         }
-
-        .match-participants-win {
-            grid-area: win;
-            display: grid;
-            align-content: space-evenly;
-        }
-            .match-participants-win-child{
-                justify-self: left;
-                align-self: center;
-            }
-        
-        .match-participants-lose {
-            grid-area: lose;
-            display: grid;
-            align-content: space-evenly;
-        }
-            .match-participants-lose-child {
-                justify-self: left;
-                align-self: center;
-            }
