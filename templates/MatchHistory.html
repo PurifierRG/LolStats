@@ -57,7 +57,10 @@
                             ({{player['CSPerMinute']}})
                         </div>
                         <div class="match-player-stats-child win-status">
-                            {% if player['Win']%}
+                            {% if player['Win'] == 'Remake'%}
+                                <p>Remake</p>
+                                <script> ChangeMatchColour('remake', {{i}}) </script>
+                            {% elif player['Win'] %}
                                 <p>Victory</p>
                                 <script> ChangeMatchColour('win', {{i}}) </script>
                             {% else %}
@@ -68,19 +71,19 @@
                     </div>
                     
                     <div class="match-child participants">
-                        <div class="participants-child participants-win">
+                        <div class="participants-child team-blue">
                             {% for player in Player_Details[i] %}
-                                {% if player['Win'] %}
-                                    <div class="participants-win-child participant-icon"><img class="icon-default" src="{{player['ChampionImage']}}"></div>
-                                    <div class="participants-win-child participant-name"><a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
+                                {% if player['PlayerTeam'] == 'Blue' %}
+                                    <div class="team-blue-child participant-icon"><img class="icon-default" src="{{player['ChampionImage']}}"></div>
+                                    <div class="team-blue-child participant-name"><a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
                                 {% endif %}
                             {% endfor %}
                         </div>
-                        <div class="participants-child participants-lose">
+                        <div class="participants-child team-red">
                             {% for player in Player_Details[i] %}
-                                {% if player['Win'] == False %}
-                                    <div class="participants-lose-child participant-icon"><img class="icon-default" src="{{player['ChampionImage']}}"></div>
-                                    <div class="participants-lose-child participant-name"><a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
+                                {% if player['PlayerTeam'] == 'Red' %}
+                                    <div class="team-red-child participant-icon"><img class="icon-default" src="{{player['ChampionImage']}}"></div>
+                                    <div class="team-red-child participant-name"><a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
                                 {% endif %}
                             {% endfor %}
                         </div>

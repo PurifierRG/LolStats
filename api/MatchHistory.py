@@ -59,12 +59,10 @@ def getMatchPlayersDetails(data, version):
             player_data['Kills'] = player['kills']
             player_data['Deaths'] = player['deaths']
             player_data['Assists'] = player['assists']
-            player_data['Win'] = player['win']
-
-            if player_data['Deaths'] == 0:
-                player_data['KDA'] = "Perfect"
-            else:
-                player_data['KDA'] = round(((player['kills'] + player['assists']) / player_data['Deaths']), 2)
+            
+            player_data['PlayerTeam'] = 'Blue' if player['teamId'] == 100 else 'Red'
+            player_data['Win'] = player['win'] if match_info[i]['GameDuration'] > 240 else 'Remake'
+            player_data['KDA'] = "Perfect" if player_data['Deaths'] == 0 else round(((player['kills'] + player['assists']) / player_data['Deaths']), 2)          
             
             player_data['ChampionImage'] = GI.getChampImage(player['championName'], version)
             
