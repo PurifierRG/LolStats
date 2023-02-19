@@ -143,8 +143,8 @@ nav button {
     overflow: auto;
     display: grid;
     width: 100%;
-    margin: 0.1rem;
-    font-size: 0.8rem;
+    margin: 0.15rem;
+    font-size: 0.7rem;
     border: 0.3rem outset;
     align-self: center;
     justify-self: center;
@@ -181,6 +181,8 @@ nav button {
     
     .player-icon {
         grid-area: iconz;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         grid-template-areas:
@@ -189,7 +191,7 @@ nav button {
             "items items items items items items items";
     }
         .player-icon-child {
-            width: 100%;
+            width: 95%;
             align-self: center;
             padding: 0.1rem;
         }
@@ -226,6 +228,7 @@ nav button {
             .items-image-child {
                 width: 100%;
                 justify-self: center;
+                align-self: center;
                 padding: 0.1rem;
             }
 
@@ -285,7 +288,7 @@ nav button {
         }
         
         .participant-icon {
-            width: 100%;
+            width: 80%;
         }
         .participant-name {
             width: 100%;
