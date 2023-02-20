@@ -22,7 +22,7 @@ def getLiveGameInfo(region, summonerID, api_key, version):
         champList.append(player_data['ChampionID'])
         champInfo = getChampsInfo(version, champList)
         player_data['ChampionName'] = champInfo[0]['ChampionName']
-        player_data['ChampionImage'] = GI.getChampImage([player_data['ChampionName']], version)
+        player_data['ChampionImage'] = GI.getChampImage(player_data['ChampionName'], version)
 
         player_data['PlayerTeam'] = 'Blue' if player['teamId'] == 100 else 'Red'
 
