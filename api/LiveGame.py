@@ -46,7 +46,7 @@ def getChampsInfo(version, champID):
     for champ in response['data']:
         if int(response['data'][champ]['key']) in champID:
             ChampDetails = {}
-            ChampDetails['ChampionName'] = response['data'][champ]['name']
+            ChampDetails['ChampionName'] = response['data'][champ]['id']
             ChampInfo.append(ChampDetails)
     print(ChampInfo)
     return ChampInfo
