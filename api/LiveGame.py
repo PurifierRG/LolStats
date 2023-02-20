@@ -1,9 +1,10 @@
 import requests
 from MatchHistory import getMatchPlayersDetails
 
+
 def getLiveGameInfo(region, account_id, api, version):
     endpoint = f"https://{region}.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/{account_id}"
-    response = requests.get(endpoint, params={'api_key':api})
+    response = requests.get(endpoint, params={'api_key': api})
     if response.status_code == 200:
         data = response.json()
         #   Type of data returned :-
@@ -58,5 +59,3 @@ def getLiveGameInfo(region, account_id, api, version):
         return live_player_info
     else:
         print("The summoner is not currently in a live game.")
-
-    
