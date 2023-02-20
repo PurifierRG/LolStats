@@ -1,8 +1,8 @@
-import requests
+import requests 
 from helpers import GenericImages as GI
 
-def getLiveGameInfo(region, account_id, api_key, version):
-    endpoint = f"https://{region}.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/{account_id}"
+def getLiveGameInfo(region, summonerID, api_key, version):
+    endpoint = f"https://{region}.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/{summonerID}"
     response = requests.get(endpoint, params={'api_key': api_key})
     
     if response.status_code != 200:
@@ -14,8 +14,16 @@ def getLiveGameInfo(region, account_id, api_key, version):
 
     for player in data['participants']:
         player_data = {}
+
         player_data['PlayerName'] = player['summonerName']
-        player_data['ChampionId'] = player['championId']
+        
+        player_data['ChampionID'] = player['championId']
+        champList = []
+        champList.append(player_data['ChampionID'])
+        champInfo = getChampsInfo(version, champList)
+        player_data['ChampionName'] = champInfo[0]['ChampionName']
+        player_data['ChampionImage'] = GI.getChampImage([player_data['ChampionName']], version)
+
         player_data['PlayerTeam'] = 'Blue' if player['teamId'] == 100 else 'Red'
 
         player_data['Keystone'] = GI.getRuneImage(player["perks"]["perkIds"][0], version)
@@ -27,3 +35,18 @@ def getLiveGameInfo(region, account_id, api_key, version):
         players_info.append(player_data)
 
     return players_info
+
+
+def getChampsInfo(version, champID):
+    url = f"http://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/champion.json"
+    response = requests.get(url)
+    response = response.json()
+
+    ChampInfo = []
+    for champ in response['data']:
+        if int(response['data'][champ]['key']) in champID:
+            ChampDetails = {}
+            ChampDetails['ChampionName'] = response['data'][champ]['name']
+            ChampInfo.append(ChampDetails)
+    print(ChampInfo)
+    return ChampInfo

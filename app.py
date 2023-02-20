@@ -63,24 +63,20 @@ def Test():
 
 
 @app.route('/test/<region>/<username>', methods=['GET'])
-# def TestJSON(region, username):
-#     shard = RD.getShard(region)
-#     version = RD.getVersion(api, region)
-
-#     user_info = UID.getUser(api, username, region)
-
-#     match_ids = MH.getMatchIDs(api, shard, user_info['puuid'],)
-#     match_details = MH.getMatchDetails(api, shard, match_ids)
-#     match_info = MH.getMatchInfo(match_details)
-#     match_player_info = MH.getMatchPlayersDetails(match_details, version)
-    
-#     return match_player_info
-def TestLive(region, username):
+def TestJSON(region, username):
+    shard = RD.getShard(region)
     version = RD.getVersion(api, region)
-    account_id = UID.getUser(api, username, region)['id']
-    live_player_info = LG.getLiveGameInfo(region, account_id, api, version)
+
+    user_info = UID.getUser(api, username, region)
+    live_player_info = LG.getLiveGameInfo(region, user_info['id'], api, version)
+
+    match_ids = MH.getMatchIDs(api, shard, user_info['puuid'],)
+    match_details = MH.getMatchDetails(api, shard, match_ids)
+    match_info = MH.getMatchInfo(match_details)
+    match_player_info = MH.getMatchPlayersDetails(match_details, version)
+    
     return live_player_info
-     
+
 #------------------------------------------------------------------------------------------------------
 
 if __name__ == '__main__':
