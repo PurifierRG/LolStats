@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, redirect, request
 import os
 from dotenv import load_dotenv
 from api import MatchHistory as MH
+from api import LiveGame as LG
 from helpers import GenericImages as GI
 from helpers import RegionDetails as RD
 from helpers import UserID as UID
@@ -62,18 +63,23 @@ def Test():
 
 
 @app.route('/test/<region>/<username>', methods=['GET'])
-def TestJSON(region, username):
-    shard = RD.getShard(region)
-    version = RD.getVersion(api, region)
+# def TestJSON(region, username):
+#     shard = RD.getShard(region)
+#     version = RD.getVersion(api, region)
 
-    user_info = UID.getUser(api, username, region)
+#     user_info = UID.getUser(api, username, region)
 
-    match_ids = MH.getMatchIDs(api, shard, user_info['puuid'],)
-    match_details = MH.getMatchDetails(api, shard, match_ids)
-    match_info = MH.getMatchInfo(match_details)
-    match_player_info = MH.getMatchPlayersDetails(match_details, version)
+#     match_ids = MH.getMatchIDs(api, shard, user_info['puuid'],)
+#     match_details = MH.getMatchDetails(api, shard, match_ids)
+#     match_info = MH.getMatchInfo(match_details)
+#     match_player_info = MH.getMatchPlayersDetails(match_details, version)
     
-    return match_player_info
+#     return match_player_info
+def TestLive(region, username):
+    version = RD.getVersion(api, region)
+    account_id = UID.getUser(api, username, region)['id']
+    live_player_info = LG.getLiveGameInfo(region, account_id, api, version)
+    return live_player_info
      
 #------------------------------------------------------------------------------------------------------
 

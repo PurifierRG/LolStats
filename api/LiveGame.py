@@ -1,61 +1,29 @@
 import requests
-from MatchHistory import getMatchPlayersDetails
+from helpers import GenericImages as GI
 
-
-def getLiveGameInfo(region, account_id, api, version):
+def getLiveGameInfo(region, account_id, api_key, version):
     endpoint = f"https://{region}.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/{account_id}"
-    response = requests.get(endpoint, params={'api_key': api})
-    if response.status_code == 200:
-        data = response.json()
-        #   Type of data returned :-
-        #         {
-        #   "gameId": 1234567890,
-        #   "mapId": 11,
-        #   "gameMode": "CLASSIC",
-        #   "gameType": "MATCHED_GAME",
-        #   "gameQueueConfigId": 420,
-        #   "participants": [
-        #     {
-        #       "teamId": 100,
-        #       "spell1Id": 4,
-        #       "spell2Id": 7,
-        #       "championId": 64,
-        #       "profileIconId": 29,
-        #       "summonerName": "Summoner1",
-        #       "bot": false,
-        #       "summonerId": "abcdefghijk",
-        #       "perks": {
-        #         "perkIds": [8010, 9111, 9103, 8299],
-        #         "perkStyle": 8000,
-        #         "perkSubStyle": 8200
-        #       }
-        #     },
-        #     {
-        #       "teamId": 200,
-        #       "spell1Id": 14,
-        #       "spell2Id": 4,
-        #       "championId": 86,
-        #       "profileIconId": 23,
-        #       "summonerName": "Summoner2",
-        #       "bot": false,
-        #       "summonerId": "lmnopqrstuv",
-        #       "perks": {
-        #         "perkIds": [8439, 8463, 8444, 8451],
-        #         "perkStyle": 8400,
-        #         "perkSubStyle": 8400
-        #       }
-        #     },
-        #     ...
-        #   ],
-        #   "observers": {
-        #     "encryptionKey": "abcdefghijklmnopqrstuvwxyz012345"
-        #   },
-        #   "platformId": "NA1",
-        #   "gameStartTime": 1622669266000,
-        #   "gameLength": 2324
-        # }
-
-        live_player_info = getMatchPlayersDetails(data, version)
-        return live_player_info
-    else:
+    response = requests.get(endpoint, params={'api_key': api_key})
+    
+    if response.status_code != 200:
         print("The summoner is not currently in a live game.")
+        return []
+
+    data = response.json()
+    players_info = []
+
+    for player in data['participants']:
+        player_data = {}
+        player_data['PlayerName'] = player['summonerName']
+        player_data['ChampionId'] = player['championId']
+        player_data['PlayerTeam'] = 'Blue' if player['teamId'] == 100 else 'Red'
+
+        player_data['Keystone'] = GI.getRuneImage(player["perks"]["perkIds"][0], version)
+        player_data['SecondaryRune'] = GI.getRuneImage(player["perks"]["perkSubStyle"], version)
+
+        player_data['Summoner1'] = GI.getSummonerSpellImage(player['spell1Id'], version)
+        player_data['Summoner2'] = GI.getSummonerSpellImage(player['spell2Id'], version)
+
+        players_info.append(player_data)
+
+    return players_info
