@@ -3,6 +3,23 @@
 {% block Content %}
 
 <div class="content">
+    <div class="live">
+        {% for player in Live_Info %}
+            <div class="live-child player-icon">
+                <div class="player-icon-child champion-image">
+                    <img class="icon-default" src="{{player['ChampionImage']}}">
+                </div>
+                <div class="player-icon-child summoner-spells-image">
+                    <img class="icon-default summoner-spells-image-child" src="{{player[Summoner1]}}">
+                    <img class="icon-default summoner-spells-image-child" src="{{player[Summoner2]}}">
+                </div>
+                <div class="player-icon-child runes-image">
+                    <img class="icon-default runes-image-child" src="{{player['Keystone']}}">
+                    <img class="icon-default runes-image-child" src="{{player['SecondaryRune']}}">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
     {% for i in range(PAGE_INFO['len']) %}
         <div class="match" id="match-{{i}}">
             {% for player in Player_Details[i] %}

@@ -43,13 +43,15 @@ def MatchHistory(region, username):
     match_info = MH.getMatchInfo(match_details)
     match_player_info = MH.getMatchPlayersDetails(match_details, version)
 
+    live_player_info = LG.getLiveGameInfo(region, user_info['id'], api, version)
+
     PageInfo = {
         'Title': f"{user_info['name']} - Match History",
         'Username': user_info['name'], 
         'len': len(match_player_info),
         'region': region 
     }
-    return render_template('MatchHistory.html', PAGE_INFO=PageInfo, Player_Details=match_player_info, Match_Details=match_info)
+    return render_template('MatchHistory.html', PAGE_INFO=PageInfo, Player_Details=match_player_info, Match_Details=match_info, Live_Info=live_player_info)
 
 # TEST ------------------------------------------------------------------------------------------------
 
