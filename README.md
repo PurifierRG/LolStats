@@ -10,7 +10,7 @@ Users can view their match history and see details such as the game mode, date p
 
 ### Live Match Tracking
 
-The app allows users to track the details of their live games, including the summoner names and champion names of all players in the game. Users can see the real-time stats of each player, such as their KDA, items purchased, and total gold earned. Additionally, the app can display the current objective status, including the location of epic monsters like the dragon and Baron Nashor.
+The app allows users to track the details of their live games, including the summoner names and champion names of all players in the game.
 
 ### Search for Other Players
 
