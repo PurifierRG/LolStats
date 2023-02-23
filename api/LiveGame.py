@@ -16,6 +16,8 @@ def getLiveGameInfo(region, summonerID, api_key, version):
         player_data = {}
 
         player_data['PlayerName'] = player['summonerName']
+
+        player_data['Winrate'] = getWinRate(player['summonerID'], api_key)
         
         player_data['ChampionID'] = player['championId']
         champList = []
@@ -50,3 +52,15 @@ def getChampsInfo(version, champID):
             ChampInfo.append(ChampDetails)
     print(ChampInfo)
     return ChampInfo
+
+def getWinRate(summonerID, api):
+    url = f"https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/{summonerID}"
+    response = requests.get(url, params={'api_key': api})
+
+    for queue in response.json():
+        if queue["queueType"] == "RANKED_SOLO_5x5":
+            wins = queue["wins"]
+            losses = queue["losses"]
+            winrate = wins / (wins + losses)
+
+    return winrate
