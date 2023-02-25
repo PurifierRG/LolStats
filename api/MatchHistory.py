@@ -48,27 +48,34 @@ def getMatchPlayersDetails(version, data):
         player_data = {}
 
         for player in data[i]['info']['participants']:
+            # General
             player_data['PlayerName'] = player['summonerName']
+            player_data['PlayerLevel'] = player['champLevel']
             player_data['Champion'] = player['championName']
-            player_data['DamageToChampions'] = player['totalDamageDealtToChampions']
-            player_data['DamageTaken'] = player['totalDamageTaken']
+            player_data['PlayerTeam'] = 'Blue' if player['teamId'] == 100 else 'Red'
+            player_data['Win'] = player['win'] if match_info[i]['GameDuration'] > 240 else 'Remake'
+            # KDA
+            player_data['Kills'] = player['kills']
+            player_data['Deaths'] = player['deaths']
+            player_data['Assists'] = player['assists']
+            player_data['KDA'] = "Perfect" if player_data['Deaths'] == 0 else round(((player['kills'] + player['assists']) / player_data['Deaths']), 2)          
+            # CS
             player_data['LaneMinionsKilled'] = player['totalMinionsKilled']
             player_data['NeutralMinionsKilled'] = player['neutralMinionsKilled']
             player_data['TotalMinionsKilled'] = player_data['NeutralMinionsKilled'] + player_data['LaneMinionsKilled']
             player_data['CSPerMinute'] = round(player_data['TotalMinionsKilled'] / ((match_info[i]['GameDuration'])/60), 2)
-            player_data['Kills'] = player['kills']
-            player_data['Deaths'] = player['deaths']
-            player_data['Assists'] = player['assists']
-            
-            player_data['PlayerTeam'] = 'Blue' if player['teamId'] == 100 else 'Red'
-            player_data['Win'] = player['win'] if match_info[i]['GameDuration'] > 240 else 'Remake'
-            player_data['KDA'] = "Perfect" if player_data['Deaths'] == 0 else round(((player['kills'] + player['assists']) / player_data['Deaths']), 2)          
-            
-            player_data['ChampionImage'] = GI.getChampImage(version, player['championName'])
-            
+            # Vision
+            player_data['VisionScore'] = player['visionScore']
+            player_data['ControlWards'] = player['visionWardsBoughtInGame']
+            player_data['WardsPlaced'] = player['wardsPlaced']
+            player_data['WardsDestroyed'] = player['wardsKilled']
+            # Damage
+            player_data['DamageToChampions'] = player['totalDamageDealtToChampions']
+            player_data['DamageTaken'] = player['totalDamageTaken']
+            # Images
+            player_data['ChampionImage'] = GI.getChampImage(version, player['championName'])           
             player_data['Keystone'] = GI.getRuneImage(version, player["perks"]["styles"][0]["selections"][0]["perk"])
             player_data['SecondaryRune'] = GI.getRuneImage(version, player["perks"]["styles"][1]['style'])
-
             player_data['Item0'] = GI.getItemImage(version, player['item0'])
             player_data['Item1'] = GI.getItemImage(version, player['item1'])
             player_data['Item2'] = GI.getItemImage(version, player['item2'])
@@ -76,7 +83,6 @@ def getMatchPlayersDetails(version, data):
             player_data['Item4'] = GI.getItemImage(version, player['item4'])
             player_data['Item5'] = GI.getItemImage(version, player['item5'])
             player_data['Item6'] = GI.getItemImage(version, player['item6'])
-
             player_data['Summoner1'] = GI.getSummonerSpellImage(version, player['summoner1Id'])
             player_data['Summoner2'] = GI.getSummonerSpellImage(version, player['summoner2Id'])
 
