@@ -34,18 +34,19 @@
 /* NAVBAR ------------------------------------------------------------------------------------------------------- */
 
 nav {
-    position: sticky;
-    top: 0;
     display: grid;
     grid-template-columns: 0.5rem repeat(6, 1fr) 0.5rem;
     grid-template-areas: "space logo nav nav nav search search";
-    grid-gap: 0.5rem;
+    gap: 0.5rem;
     height: 2rem;
     min-height: 50px;
     background-color: var(--nav-bg-color);
     border: 0.2rem outset #003b5b66;
     border-radius: 6px;
     font-weight: bolder;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .logo {
@@ -58,10 +59,10 @@ nav {
     grid-area: nav;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    width: 50%;
-    align-self: center;
     justify-self: center;
+    align-self: center;
     list-style: none;
+    width: 50%;
 }
     .nav li {
         text-align: center;
@@ -108,50 +109,70 @@ nav button {
 
 .small-select {
     height: 1.4rem;
+    min-height: 21px;
     width: 3rem;
     max-width: max-content;
-    min-height: 21px;
 }
 
 .icon-default {
-    width: 100%;
-    border-radius: 0.33rem;
     justify-self: center;
     align-self: center;
+    width: 100%;
+    border-radius: 0.33rem;
+}
+    .icon-height{
+        height: 100%;
+    }
+
+.text-left{
+    text-align: left;
+}
+.text-left{
+    text-align: right;
+}
+.text-center{
+    text-align: center;
+}
+
+.padding-default{
+    padding: 0.1rem;
 }
 
 /* -------------------------------------------------------------------------------------------------------------- */
 
 .container {
-    color: var(--other-color-2);
     display: grid;
     grid-template-columns: repeat(6,1fr);
     grid-template-areas: "sidebar-left Main Main Main Main sidebar-right";
     max-height: min-content;
     font-size: 1rem;
+    color: var(--other-color-2);
 }
 
 .content {
     grid-area: Main;
-    background-color: var(--secondary-color);
+    display: grid;
+    grid-template-columns: 1fr;
     width: 100%;
     margin-top: 2rem;
     padding: 0.2rem;
-    display: grid;
-    grid-template-columns: 1fr;
+    background-color: var(--secondary-color);
 }
 
+/* -------------------------------------------------------------------------------------------------------------- */
 .match {
-    overflow: auto;
     display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 0.15fr;
+    grid-template-areas: 
+        "match-data iconz stats players stats-button"
+        "full-stats full-stats full-stats full-stats full-stats";
+    justify-self: center;
+    align-self: center;
     width: 100%;
     margin: 0.15rem;
-    font-size: 0.7rem;
     border: 0.3rem outset;
-    align-self: center;
-    justify-self: center;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-areas: "match-data iconz stats players";
+    font-size: 0.7rem;
+    overflow: auto;
 }
     .match-child {
         overflow: auto;
@@ -170,6 +191,9 @@ nav button {
         background-color: var(--remake-color);
         border-color: var(--remake-color-br);
     }
+    .ward-icon{
+        border-radius: 50%;
+    }
 
     .match-info {
         grid-area: match-data;
@@ -184,45 +208,54 @@ nav button {
         .match-info-child {
             align-self: center;
         }
-    
+
     .player-icon {
         grid-area: iconz;
-        padding-top: 0.3rem;
-        padding-bottom: 0.3rem;
         display: grid;
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(3, 1fr) 0.95fr 1fr 1fr 1fr;
         grid-template-areas:
             "picon picon spell runes p-kda p-kda p-kda"
             "picon picon spell runes p-kda p-kda p-kda"
             "items items items items items items items";
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
     }
         .player-icon-child {
-            width: 95%;
             align-self: center;
-            padding: 0.1rem;
+            width: 95%;
         }
-
         .champion-image {
             grid-area: picon;
             display: grid;
+            position: relative;
         }
+            .in-game-level {
+                position: absolute;
+                bottom: 0.1rem;
+                right: 0.1rem;
+                border-top-left-radius: 0.33rem;
+                padding: 0.15rem;
+                font-size: 0.8rem;
+                background-color: black;
+                color: var(--other-color-2);
+            }
         .summoner-spells-image {
             grid-area: spell;
             display: grid;
         }
             .summoner-spells-image-child {
-                width: 100%;
                 justify-self: center;
+                width: 100%;
                 padding: 0.1rem;
             }
-        
+
         .runes-image{
             grid-area: runes;
             display: grid;
         }
-            .rune-image-child{
-                width: 100%;
+            .runes-image-child{
                 justify-self: center;
+                width: 100%;
                 padding: 0.1rem;
             }
 
@@ -230,69 +263,74 @@ nav button {
             grid-area: items;
             display: grid;
             grid-template-columns: repeat(7, 1fr);
+            column-gap: 0.1rem;
         }
             .items-image-child {
-                width: 100%;
                 justify-self: center;
                 align-self: center;
+                width: 100%;
                 padding: 0.1rem;
             }
 
         .kda {
             grid-area: p-kda;
-            font-size: 1.2em;
             display: grid;
             justify-content: space-around;
             justify-items: center;
+            font-size: 1.2em;
         }
             .kda-child {
                 justify-self: center;
             }
-
             .kda-full {
                 align-self:end;
             }
             .kda-small {
                 align-self:baseline;
             }
-    
-    .match-player-stats {
-        grid-area: stats;
-        display: grid;
-        align-content: stretch;
-        justify-content: start;
-        padding-left: 3rem;
-    }
-        .match-player-stats-child {
-            align-self: center;
+                
+        .match-player-stats {
+            grid-area: stats;
+            display: grid;
+            justify-content: start;
+            align-content: stretch;
+            padding-left: 3rem;
         }
-
+            .match-player-stats-child {
+                align-self: center;
+            }
+            
     .participants {
-        width: 100%;
         grid-area: players;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-areas: 
-            "team-blue team-red"
+            "team-blue team-red";
+        width: 100%;
+    }
+    .player-link {
+        text-decoration: none;
+        color: var(--other-color-2);
+    }
+    .player-link:hover {
+        text-decoration: underline;
     }
         .participants-child {
-            justify-self: center;
-            align-self: center;
             display: grid;
             grid-template-columns: 1fr 4fr;
-            width: 100%;
-            height: 100%;
+            justify-self: center;
+            align-self: center;
             align-items: center;
             align-content: stretch;
+            width: 100%;
+            height: 100%;
         }
-
         .team-blue {
             grid-area: team-blue;
         }
         .team-red {
             grid-area: team-red;
         }
-        
         .participant-icon {
             width: 80%;
         }
@@ -300,11 +338,131 @@ nav button {
             width: 100%;
             overflow: hidden;
         }
+                  
+    .stats-button {
+        grid-area: stats-button;
+        display: grid;
+        justify-content: center;
+        align-items: end;
+        border: 0.1rem;
+        border-style: outset;
+        border-color: var(--other-color-2);
+        font-size: 1rem;
+    }
+    .stats-button:hover {
+        cursor: pointer;
+        color: var(--other-color-2);
+    }
+    .stats-button:active {
+        border-style: inset;
+        border-color: rgb(97 99 100);
+    }
+    .stats-button-win {
+        background-color: var(--win-color);
+    }
+    .stats-button-win:hover {
+        background-color: rgb(0 37 55);
+    }
+    .stats-button-lose {
+        background-color: var(--lose-color);
+    }
+    .stats-button-lose:hover {
+        background-color: rgb(70 6 7);
+    }
+    .stats-button-remake {
+        background-color: var(--remake-color);
+    }
+    .stats-button-remake:hover {
+        background-color: rgb(34 34 34);
+    }
+        
+/* All Stats ---------------------------- */
 
-        .participants a {
-            text-decoration: none;
-            color: var(--other-color-2);
+.all-stats{
+    grid-area: full-stats;
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: auto;
+}
+    .all-stats-child{
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
+    .AS-stats-heading {
+        display: grid;
+        grid-template-columns: 4fr 2fr 2fr 2fr 3fr 4fr;
+        justify-items: center;
+        align-items: center;
+        height: 1.5rem;
+        background-color: black;
+    }
+    .AS-team-blue{
+        background-color: var(--win-color);
+    }
+    .AS-team-red{
+        background-color: var(--lose-color);
+    }
+    .AS-player-stats{
+        display: grid;
+        grid-template-columns: 4fr 2fr 2fr 2fr 3fr 4fr;
+        padding: 0.1rem;
+    }
+        .AS-player-stats-child {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
         }
-        .participants a:hover {
-            text-decoration: underline;
+
+        .AS-result{
+            display: grid;
+            grid-template-columns: 2fr 1fr 0.95fr 6fr;
+            grid-template-areas: 
+                "champ spell rune name"
+                "champ spell rune name";
+            column-gap: 0.1rem;
         }
+            .AS-result-child {
+                display: grid;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+            }
+            .AS-champ-image {
+                grid-area: champ;
+                display: grid;
+                justify-content: center;
+                align-items: center;
+            }
+            .AS-spell-image {
+                grid-area: spell;
+                display: grid;
+                justify-content: center;
+                align-items: center;
+                padding: 0.1rem;
+            }
+            .AS-rune-image {
+                grid-area: rune;
+                display: grid;
+                justify-content: center;
+                align-items: center;
+                padding: 0.1rem;
+            }
+            .AS-player-name {
+                grid-area: name;
+                display: grid;
+                align-items: center;
+                padding-left: 0.3rem;
+                font-size: 0.75rem;
+            }
+        
+        .AS-items{
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            column-gap: 0.1rem;
+        }
+
+/* -------------------------------------------------------------------------------------------------------------- */

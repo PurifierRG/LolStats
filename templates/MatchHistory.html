@@ -5,68 +5,66 @@
 <div class="content">
 
     {% for i in range(PAGE_INFO['len']) %}
-        <div class="match" id="match-{{i}}">
+        <div class="match" id="match-{{ i }}">
+
             {% for player in Player_Details[i] %}
-                {% if player['PlayerName'] == PAGE_INFO['Username'] %}
-                    
+                {% if player['PlayerName'] == PAGE_INFO['Username'] %}                   
                     <div class="match-child match-info">
-                        <div class="match-info-child"><p>Game Mode: {{Match_Details[i]['GameMode']}}</p></div>
-                        <div class="match-info-child"><p>Game Type: {{Match_Details[i]['GameType']}}</p></div>
-                        <div class="match-info-child"><p>Duration: {{Match_Details[i]['GameTime']}}</p></div>
+                        <div class="match-info-child"><p>Game Mode: {{ Match_Details[i]['GameMode'] }}</p></div>
+                        <div class="match-info-child"><p>Game Type: {{ Match_Details[i]['GameType'] }}</p></div>
+                        <div class="match-info-child"><p>Duration: {{ Match_Details[i]['GameTime'] }}</p></div>
                     </div>
 
                     <div class="match-child player-icon">
                         <div class="player-icon-child champion-image">
                             <img class="icon-default" src = "{{ player['ChampionImage'] }}">
+                            <span class="in-game-level">{{ player['PlayerLevel'] }}</span>
                         </div>
                         <div class="player-icon-child summoner-spells-image">
-                            <img class="icon-default summoner-spells-image-child" src="{{ player['Summoner1']}}">
-                            <img class="icon-default summoner-spells-image-child" src="{{ player['Summoner2']}}">
+                            <img class="icon-default summoner-spells-image-child" src="{{ player['Summoner1'] }}">
+                            <img class="icon-default summoner-spells-image-child" src="{{ player['Summoner2'] }}">
                         </div>
                         <div class="player-icon-child runes-image">
-                            <img class="icon-default runes-image-child" src="{{player['Keystone']}}">
-                            <img class="icon-default runes-image-child" src="{{player['SecondaryRune']}}">
+                            <img class="icon-default runes-image-child" src="{{ player['Keystone'] }}">
+                            <img class="icon-default runes-image-child" src="{{ player['SecondaryRune'] }}">
                         </div>
                         <div class="player-icon-child items-image">
-                                <img class="icon-default items-image-child" src = "{{ player['Item0']}}">
-                                <img class="icon-default items-image-child" src = "{{ player['Item1']}}">
-                                <img class="icon-default items-image-child" src = "{{ player['Item2']}}">
-                                <img class="icon-default items-image-child" src = "{{ player['Item3']}}">
-                                <img class="icon-default items-image-child" src = "{{ player['Item4']}}">
-                                <img class="icon-default items-image-child" src = "{{ player['Item5']}}">
-                                <img class="icon-default items-image-child" src = "{{ player['Item6']}}">
+                                <img class="icon-default items-image-child" src="{{ player['Item0'] }}">
+                                <img class="icon-default items-image-child" src="{{ player['Item1'] }}">
+                                <img class="icon-default items-image-child" src="{{ player['Item2'] }}">
+                                <img class="icon-default items-image-child" src="{{ player['Item3'] }}">
+                                <img class="icon-default items-image-child" src="{{ player['Item4'] }}">
+                                <img class="icon-default items-image-child" src="{{ player['Item5'] }}">
+                                <img class="icon-default items-image-child ward-icon" src="{{ player['Item6'] }}">
                         </div>
                         <div class="player-icon-child kda">
                             <div class="kda-child kda-full">
-                                <p><b>{{player['Kills']}}/{{player['Deaths']}}/{{player['Assists']}}</b></p>
+                                <p><b>{{ player['Kills'] }}/{{ player['Deaths'] }}/{{ player['Assists'] }}</b></p>
                             </div>
                             <div class="kda-child kda-small">
-                                <p>{{player['KDA']}} KDA</p>
+                                <p>{{ player['KDA'] }} KDA</p>
                             </div>    
                         </div>
                     </div>
 
                     <div class="match-child match-player-stats">
                         <div class="match-player-stats-child damage-dealt">
-                            <p>Damage Dealt: {{player['DamageToChampions']}}</p>
+                            <p>Damage Dealt: {{ player['DamageToChampions'] }}</p>
                         </div>
                         <div class="match-player-stats-child damage-taken">
-                            <p>Damage Taken: {{player['DamageTaken']}}</p>
+                            <p>Damage Taken: {{ player['DamageTaken'] }}</p>
                         </div>
                         <div class="match-player-stats-child creep-score">
-                            CS: {{player['TotalMinionsKilled']}}
-                            ({{player['CSPerMinute']}})
+                            CS: {{ player['TotalMinionsKilled'] }}
+                            ({{ player['CSPerMinute'] }})
                         </div>
                         <div class="match-player-stats-child win-status">
                             {% if player['Win'] == 'Remake'%}
-                                <p>Remake</p>
-                                <script> ChangeMatchColour('remake', {{i}}) </script>
+                                <p><b>Remake</b></p>
                             {% elif player['Win'] %}
-                                <p>Victory</p>
-                                <script> ChangeMatchColour('win', {{i}}) </script>
+                                <p><b>Victory</b></p>
                             {% else %}
-                                <p>Defeat</p>
-                                <script> ChangeMatchColour('lose', {{i}}) </script>
+                                <p><b>Defeat</b></p>
                             {% endif %}
                         </div>
                     </div>
@@ -75,25 +73,155 @@
                         <div class="participants-child team-blue">
                             {% for player in Player_Details[i] %}
                                 {% if player['PlayerTeam'] == 'Blue' %}
-                                    <div class="team-blue-child participant-icon"><img class="icon-default" src="{{player['ChampionImage']}}"></div>
-                                    <div class="team-blue-child participant-name"><a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
+                                    <div class="team-blue-child participant-icon"><img class="icon-default" src="{{ player['ChampionImage'] }}"></div>
+                                    <div class="team-blue-child participant-name"><a class="player-link" href="/lol/{{ PAGE_INFO['region'] }}/{{ player['PlayerName'] }}">{{ player['PlayerName'] }}</a></div>
                                 {% endif %}
                             {% endfor %}
                         </div>
                         <div class="participants-child team-red">
                             {% for player in Player_Details[i] %}
                                 {% if player['PlayerTeam'] == 'Red' %}
-                                    <div class="team-red-child participant-icon"><img class="icon-default" src="{{player['ChampionImage']}}"></div>
-                                    <div class="team-red-child participant-name"><a href="/lol/{{PAGE_INFO['region']}}/{{player['PlayerName']}}">{{player['PlayerName']}}</a></div>
+                                    <div class="team-red-child participant-icon"><img class="icon-default" src="{{ player['ChampionImage'] }}"></div>
+                                    <div class="team-red-child participant-name"><a class="player-link" href="/lol/{{ PAGE_INFO['region']}}/{{player['PlayerName'] }}">{{ player['PlayerName'] }}</a></div>
                                 {% endif %}
                             {% endfor %}
                         </div>
                     </div>
 
+                    <button class="stats-button match-child" id="stats-button-{{ i }}" onclick="ChangeDisplay({{ i }})">
+                        {% if player['Win'] == 'Remake'%}
+                                <b>&#9661;</b>
+                                <script> ChangeMatchColour('remake', {{ i }}) </script>
+                            {% elif player['Win'] %}
+                                <b>&#9661;</b>
+                                <script> ChangeMatchColour('win', {{ i }}) </script>
+                            {% else %}
+                                <b>&#9661;</b>
+                                <script> ChangeMatchColour('lose', {{ i }}) </script>
+                        {% endif %}
+                    </button>
                 {% endif %}
             {% endfor %}
+
+            <div class="all-stats" id="all-stats-{{ i }}" style="display: none;">
+                <div class="all-stats-child AS-stats-heading">
+                    <p><b>Blue Team</b></p>
+                    <p><b>KDA</b></p>
+                    <p><b>CS</b></p>
+                    <p><b>Wards</b></p>
+                    <p><b>Damage</b></p>
+                    <p><b>Items</b></p>
+                </div>
+
+                {% for player in Player_Details[i] %}
+                    {% if player['PlayerTeam'] == 'Blue' %}
+                        <div class="all-stats-child AS-player-stats AS-team-blue">
+                            <div class="AS-player-stats-child AS-result">
+                                <div class="AS-result-child AS-champ-image">
+                                    <img class="icon-default icon-height" src ="{{ player['ChampionImage'] }}">
+                                </div>
+                                <div class="AS-result-child AS-spell-image">
+                                    <img class="icon-default" src="{{ player['Summoner1'] }}">
+                                    <img class="icon-default" src="{{ player['Summoner2'] }}">
+                                </div>
+                                <div class="AS-result-child AS-rune-image">
+                                    <img class="icon-default" src="{{ player['Keystone'] }}">
+                                    <img class="icon-default" src="{{ player['SecondaryRune'] }}">
+                                </div>
+                                <div class="AS-result-child AS-player-name">
+                                    <p><a class="player-link" href="/lol/{{ PAGE_INFO['region'] }}/{{ player['PlayerName'] }}">{{ player['PlayerName'] }}</a></p>
+                                    <p>{{ player['PlayerLevel'] }}</p>
+                                </div>
+                            </div>
+                            <div class="AS-player-stats-child AS-KDA">
+                                <p class="text-center">{{ player['Kills'] }}/{{ player['Deaths'] }}/{{ player['Assists'] }}</p>
+                                <p class="text-center">{{ player['KDA'] }}</p>
+                            </div>
+                            <div class="AS-player-stats-child AS-CS">
+                                <p class="text-center">{{ player['TotalMinionsKilled'] }}</p>
+                                <p class="text-center">({{ player['CSPerMinute'] }})</p>
+                            </div>
+                            <div class="AS-player-stats-child AS-wards">
+                                <p class="text-center">{{ player['VisionScore'] }}</p>
+                                <p class="text-center">{{ player['WardsDestroyed'] }} | {{ player['WardsPlaced'] }} | {{ player['ControlWards'] }}</p>
+                            </div>
+                            <div class="AS-player-stats-child AS-damage">
+                                <span class="text-center">{{ player['DamageToChampions'] }}</span> <span class="text-center">{{ player['DamageTaken'] }}</span>
+                            </div>
+                            <div class="AS-player-stats-child AS-items">
+                                <img class="icon-default" src="{{ player['Item0'] }}">
+                                <img class="icon-default" src="{{ player['Item1'] }}">
+                                <img class="icon-default" src="{{ player['Item2'] }}">
+                                <img class="icon-default" src="{{ player['Item3'] }}">
+                                <img class="icon-default" src="{{ player['Item4'] }}">
+                                <img class="icon-default" src="{{ player['Item5'] }}">
+                                <img class="icon-default ward-icon" src="{{ player['Item6'] }}">
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                <div class="all-stats-child AS-stats-heading">
+                    <p><b>Red Team</b></p>
+                    <p><b>KDA</b></p>
+                    <p><b>CS</b></p>
+                    <p><b>Wards</b></p>
+                    <p><b>Damage</b></p>
+                    <p><b>Items</b></p>
+                </div>
+
+                {% for player in Player_Details[i] %}
+                    {% if player['PlayerTeam'] == 'Red' %}
+                        <div class="all-stats-child AS-player-stats AS-team-red">
+                            <div class="AS-player-stats-child AS-result">
+                                <div class="AS-result-child AS-champ-image">
+                                    <img class="icon-default icon-height" src ="{{ player['ChampionImage'] }}">
+                                </div>
+                                <div class="AS-result-child AS-spell-image">
+                                    <img class="icon-default" src="{{ player['Summoner1'] }}">
+                                    <img class="icon-default" src="{{ player['Summoner2'] }}">
+                                </div>
+                                <div class="AS-result-child AS-rune-image">
+                                    <img class="icon-default" src="{{ player['Keystone'] }}">
+                                    <img class="icon-default" src="{{ player['SecondaryRune'] }}">
+                                </div>
+                                <div class="AS-result-child AS-player-name">
+                                    <p><a class="player-link" href="/lol/{{ PAGE_INFO['region'] }}/{{ player['PlayerName'] }}">{{ player['PlayerName'] }}</a></p>
+                                    <p>{{ player['PlayerLevel'] }}</p>
+                                </div>
+                            </div>
+                            <div class="AS-player-stats-child AS-KDA">
+                                <p class="text-center">{{ player['Kills'] }}/{{ player['Deaths'] }}/{{ player['Assists'] }}</p>
+                                <p class="text-center">{{ player['KDA'] }}</p>
+                            </div>
+                            <div class="AS-player-stats-child AS-CS">
+                                <p class="text-center">{{ player['TotalMinionsKilled'] }}</p>
+                                <p class="text-center">({{ player['CSPerMinute'] }})</p>
+                            </div>
+                            <div class="AS-player-stats-child AS-wards">
+                                <p class="text-center">{{ player['VisionScore'] }}</p>
+                                <p class="text-center">{{ player['WardsDestroyed'] }} | {{ player['WardsPlaced'] }} | {{ player['ControlWards'] }}</p>
+                            </div>
+                            <div class="AS-player-stats-child AS-damage">
+                                <span class="text-center">{{ player['DamageToChampions'] }}</span> <span class="text-center">{{ player['DamageTaken'] }}</span>
+                            </div>
+                            <div class="AS-player-stats-child AS-items">
+                                <img class="icon-default" src="{{ player['Item0'] }}">
+                                <img class="icon-default" src="{{ player['Item1'] }}">
+                                <img class="icon-default" src="{{ player['Item2'] }}">
+                                <img class="icon-default" src="{{ player['Item3'] }}">
+                                <img class="icon-default" src="{{ player['Item4'] }}">
+                                <img class="icon-default" src="{{ player['Item5'] }}">
+                                <img class="icon-default ward-icon" src="{{ player['Item6'] }}">
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}                
+            </div>
+            
         </div>
     {% endfor %}
+
 </div>
 
 {% endblock Content %}

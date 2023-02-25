@@ -79,7 +79,7 @@ def TestJSON(region, username):
     match_info = MH.getMatchInfo(match_details)
     match_player_info = MH.getMatchPlayersDetails(version, match_details)
     
-    return live_player_info
+    return match_details
 
 #------------------------------------------------------------------------------------------------------
 
