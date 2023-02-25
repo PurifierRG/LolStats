@@ -3,16 +3,16 @@ from helpers import cache
 
 #------------------------------------------------------------------------------------------------------
 
-def getUser(api, username, region):
+def getUser(api, region, username):
     url = f'https://{region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{username}'
     response = requests.get(url, params={'api_key':api})
 
     if response.status_code == 200:
         resp = response.json()
         return {
-            'id': resp['id'],
-            'accountId': resp['accountId'],
-            'puuid': resp['puuid'],
+            'summonerID': resp['id'],
+            'accountID': resp['accountId'],
+            'puuID': resp['puuid'],
             'name': resp['name']
         }
     elif response.status_code == 404:
@@ -21,34 +21,39 @@ def getUser(api, username, region):
         raise ValueError('API call failed')
 
 
-def getRank(api, id, region):
-    rankUrl = f"https://{region}.api.riotgames.com/lol/league/v4/entries/by-summoner/{id}"
+def getRankInfo(api, region, summonerID):
+    rankUrl = f"https://{region}.api.riotgames.com/lol/league/v4/entries/by-summoner/{summonerID}"
     rankResponse = requests.get(rankUrl, params={'api_key':api})
 
     if rankResponse.status_code != 200:
         raise ValueError('API call failed')
     
     rankResp = rankResponse.json()
-    soloTier = 'Unranked'
-    soloRank = ''
-    flexTier = 'Unranked'
-    flexRank = ''
+    soloRank = {'rank': 'Unranked', 'division': '', 'lp': 0, 'losses': 0, 'wins': 0, 'winRate': ''}
+    flexRank = {'rank': 'Unranked', 'division': '', 'lp': 0, 'losses': 0, 'wins': 0, 'winRate': ''}
 
-    for entry in rankResp:
-        if entry['queueType'] == 'RANKED_SOLO_5x5':
-            soloTier = entry['tier']
-            soloRank = entry['rank']
-        elif entry['queueType'] == 'RANKED_FLEX_SR':
-            flexTier = entry['tier']
-            flexRank = entry['rank']
+    for queue in rankResp:
+        if queue['queueType'] == 'RANKED_SOLO_5x5':
+            soloRank['rank'] = queue['tier']
+            soloRank['division'] = queue['rank']
+            soloRank['lp'] = queue['leaguePoints']
+            soloRank['wins'] = queue['wins']
+            soloRank['losses'] = queue['losses']
+            soloRank['winRate'] = round((soloRank['wins'] / (soloRank['wins'] + soloRank['losses'])) * 100, 2)
+            soloRank['rankIMG'] = constructRankUrl(soloRank['rank'])
+        elif queue['queueType'] == 'RANKED_FLEX_SR':
+            flexRank['rank'] = queue['tier']
+            flexRank['division'] = queue['rank']
+            flexRank['lp'] = queue['leaguePoints']
+            flexRank['wins'] = queue['wins']
+            flexRank['losses'] = queue['losses']
+            flexRank['winRante'] = round((flexRank['wins'] / (flexRank['wins'] + flexRank['losses'])) * 100, 2)
+            flexRank['rankIMG'] = constructRankUrl(flexRank['rank'])
 
-    soloUrl = constructRankUrl(soloRank)
-    flexUrl = constructRankUrl(flexRank)
-
-    return {'SoloTier': soloTier, 'SoloRank': soloRank, 'SoloUrl': soloUrl, 'FlexTier': flexTier, 'FlexRank': flexRank, 'FlexUrl': flexUrl}
+    return {'Solo': soloRank, 'Flex': flexRank}
 
 
-def constructRankUrl(rank):
+def constructRankUrl(rank): # not working properly for now
     if not rank:
         return ''
 

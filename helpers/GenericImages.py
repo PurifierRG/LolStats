@@ -3,13 +3,13 @@ from helpers import cache
 
 #------------------------------------------------------------------------------------------------------
 
-def getChampImage(champName, version):
+def getChampImage(version, champName):
     url = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{champName}.png"
     return url
 
 #------------------------------------------------------------------------------------------------------
 
-def getSummonerSpellImage(spellId, version):
+def getSummonerSpellImage(version, spellId):
     SPELL_MAP = {
     1: "SummonerBoost",
     3: "SummonerExhaust",
@@ -34,7 +34,7 @@ def getSummonerSpellImage(spellId, version):
 
 #------------------------------------------------------------------------------------------------------
 
-def getRuneImage(rune_id, version):
+def getRuneImage(version, rune_id):
     url = f"https://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/runesReforged.json"
     
     response = requests.get(url)
@@ -57,7 +57,7 @@ def getRuneImage(rune_id, version):
 
 #------------------------------------------------------------------------------------------------------
 
-def getItemImage(itemId, version):
+def getItemImage(version, itemId):
     if itemId == 0:
         itemUrl = "http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/champion.png"
     else:
