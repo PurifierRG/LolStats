@@ -17,8 +17,8 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST','GET'])
 def Home():
-    Page_Info = {'Title': 'LolStat'}
-    return render_template('home.html', PAGE_INFO='LolStat - Home')
+    Page_Info = {'Title': 'LolStat - Home'}
+    return render_template('home.html', PAGE_INFO=Page_Info)
 
 #------------------------------------------------------------------------------------------------------
 
@@ -36,14 +36,14 @@ def MatchHistory(region, username):
     shard = RD.getShard(region)
     version = RD.getVersion(api, region)
 
-    user_info = UID.getUser(api, username, region)
+    user_info = UID.getUser(api, region, username)
 
-    match_ids = MH.getMatchIDs(api, shard, user_info['puuid'],)
+    match_ids = MH.getMatchIDs(api, shard, user_info['puuID'],)
     match_details = MH.getMatchDetails(api, shard, match_ids)
     match_info = MH.getMatchInfo(match_details)
-    match_player_info = MH.getMatchPlayersDetails(match_details, version)
+    match_player_info = MH.getMatchPlayersDetails(version, match_details)
 
-    live_player_info = LG.getLiveGameInfo(region, user_info['id'], api, version)
+    live_player_info = LG.getLiveGameInfo(api, region, version, user_info['summonerID'])
 
     PageInfo = {
         'Title': f"{user_info['name']} - Match History",
@@ -51,7 +51,7 @@ def MatchHistory(region, username):
         'len': len(match_player_info),
         'region': region 
     }
-    return render_template('MatchHistory.html', PAGE_INFO=PageInfo, Player_Details=match_player_info, Match_Details=match_info, Live_Info=live_player_info)
+    return render_template('MatchHistory.html', PAGE_INFO=PageInfo, Player_Details=match_player_info, Match_Details=match_info)
 
 # TEST ------------------------------------------------------------------------------------------------
 
@@ -69,13 +69,15 @@ def TestJSON(region, username):
     shard = RD.getShard(region)
     version = RD.getVersion(api, region)
 
-    user_info = UID.getUser(api, username, region)
-    live_player_info = LG.getLiveGameInfo(region, user_info['id'], api, version)
+    user_info = UID.getUser(api, region, username)
+    rankdetails = UID.getRankInfo(api, region, user_info['summonerID'])
 
-    match_ids = MH.getMatchIDs(api, shard, user_info['puuid'],)
+    live_player_info = LG.getLiveGameInfo(api, region, version, user_info['summonerID'])
+
+    match_ids = MH.getMatchIDs(api, shard, user_info['puuID'],)
     match_details = MH.getMatchDetails(api, shard, match_ids)
     match_info = MH.getMatchInfo(match_details)
-    match_player_info = MH.getMatchPlayersDetails(match_details, version)
+    match_player_info = MH.getMatchPlayersDetails(version, match_details)
     
     return live_player_info
 

@@ -39,7 +39,7 @@ def getMatchInfo(data):
     return match_info_list
 
 
-def getMatchPlayersDetails(data, version):
+def getMatchPlayersDetails(version, data):
     match_info = getMatchInfo(data)
     match_players_info = []
 
@@ -64,21 +64,21 @@ def getMatchPlayersDetails(data, version):
             player_data['Win'] = player['win'] if match_info[i]['GameDuration'] > 240 else 'Remake'
             player_data['KDA'] = "Perfect" if player_data['Deaths'] == 0 else round(((player['kills'] + player['assists']) / player_data['Deaths']), 2)          
             
-            player_data['ChampionImage'] = GI.getChampImage(player['championName'], version)
+            player_data['ChampionImage'] = GI.getChampImage(version, player['championName'])
             
-            player_data['Keystone'] = GI.getRuneImage(player["perks"]["styles"][0]["selections"][0]["perk"], version)
-            player_data['SecondaryRune'] = GI.getRuneImage(player["perks"]["styles"][1]['style'], version)
+            player_data['Keystone'] = GI.getRuneImage(version, player["perks"]["styles"][0]["selections"][0]["perk"])
+            player_data['SecondaryRune'] = GI.getRuneImage(version, player["perks"]["styles"][1]['style'])
 
-            player_data['Item0'] = GI.getItemImage(player['item0'], version)
-            player_data['Item1'] = GI.getItemImage(player['item1'], version)
-            player_data['Item2'] = GI.getItemImage(player['item2'], version)
-            player_data['Item3'] = GI.getItemImage(player['item3'], version)
-            player_data['Item4'] = GI.getItemImage(player['item4'], version)
-            player_data['Item5'] = GI.getItemImage(player['item5'], version)
-            player_data['Item6'] = GI.getItemImage(player['item6'], version)
+            player_data['Item0'] = GI.getItemImage(version, player['item0'])
+            player_data['Item1'] = GI.getItemImage(version, player['item1'])
+            player_data['Item2'] = GI.getItemImage(version, player['item2'])
+            player_data['Item3'] = GI.getItemImage(version, player['item3'])
+            player_data['Item4'] = GI.getItemImage(version, player['item4'])
+            player_data['Item5'] = GI.getItemImage(version, player['item5'])
+            player_data['Item6'] = GI.getItemImage(version, player['item6'])
 
-            player_data['Summoner1'] = GI.getSummonerSpellImage(player['summoner1Id'], version)
-            player_data['Summoner2'] = GI.getSummonerSpellImage(player['summoner2Id'], version)
+            player_data['Summoner1'] = GI.getSummonerSpellImage(version, player['summoner1Id'])
+            player_data['Summoner2'] = GI.getSummonerSpellImage(version, player['summoner2Id'])
 
             players_info.append(player_data)
             player_data = {}
