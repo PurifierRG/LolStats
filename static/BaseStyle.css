@@ -348,10 +348,10 @@ nav button {
         border-style: outset;
         border-color: var(--other-color-2);
         font-size: 1rem;
+        color: var(--other-color-2);
     }
     .stats-button:hover {
         cursor: pointer;
-        color: var(--other-color-2);
     }
     .stats-button:active {
         border-style: inset;

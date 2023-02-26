@@ -102,13 +102,13 @@
                 <!-- Button ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ -->
                     <button class="stats-button match-child" id="stats-button-{{ i }}" onclick="ChangeDisplay({{ i }})">
                         {% if player['Win'] == 'Remake'%}
-                                <b>&#9661;</b>
+                                <p>&#9661;</p>
                                 <script> ChangeMatchColour('remake', {{ i }}) </script>
                             {% elif player['Win'] %}
-                                <b>&#9661;</b>
+                                <p>&#9661;</p>
                                 <script> ChangeMatchColour('win', {{ i }}) </script>
                             {% else %}
-                                <b>&#9661;</b>
+                                <p>&#9661;</p>
                                 <script> ChangeMatchColour('lose', {{ i }}) </script>
                         {% endif %}
                     </button>

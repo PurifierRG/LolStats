@@ -28,9 +28,9 @@ function ChangeDisplay(match_id)
 
     if (match_display.style.display === 'none') {
         match_display.style.display = 'grid';
-        stats_Button.innerHTML = "<b>&#9651;</b>";
+        stats_Button.innerHTML = "<p>&#9651;</p>";
     } else {
         match_display.style.display = 'none';
-        stats_Button.innerHTML = "<b>&#9661</b>";
+        stats_Button.innerHTML = "<p>&#9661;</p>";
     }
 }
