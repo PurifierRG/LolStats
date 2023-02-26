@@ -146,24 +146,24 @@
                                     <img class="icon-default" src="{{ player['SecondaryRune'] }}">
                                 </div>
                                 <div class="AS-champ-child AS-player-name">
-                                    <p><a class="player-link" href="/lol/{{ PAGE_INFO['region'] }}/{{ player['PlayerName'] }}">{{ player['PlayerName'] }}</a></p>
-                                    <p>{{ player['PlayerLevel'] }}</p>
+                                    <p class="align-end"><a class="player-link" href="/lol/{{ PAGE_INFO['region'] }}/{{ player['PlayerName'] }}">{{ player['PlayerName'] }}</a></p>
+                                    <p class="align-baseline">{{ player['PlayerLevel'] }}</p>
                                 </div>
                             </div>
                         <!-- KDA -->
                             <div class="AS-player-stats-child AS-KDA">
-                                <p class="text-center">{{ player['Kills'] }}/{{ player['Deaths'] }}/{{ player['Assists'] }}</p>
-                                <p class="text-center">{{ player['KDA'] }}</p>
+                                <p class="align-end">{{ player['Kills'] }}/{{ player['Deaths'] }}/{{ player['Assists'] }}</p>
+                                <p class="align-baseline">[{{ player['KDA'] }}]</p>
                             </div>
                         <!-- CS -->
                             <div class="AS-player-stats-child AS-CS">
-                                <p class="text-center">{{ player['TotalMinionsKilled'] }}</p>
-                                <p class="text-center">({{ player['CSPerMinute'] }})</p>
+                                <p class="align-end">{{ player['TotalMinionsKilled'] }}</p>
+                                <p class="align-baseline">{{ player['CSPerMinute'] }}/m</p>
                             </div>
                         <!-- Vision -->
                             <div class="AS-player-stats-child AS-vision">
-                                <p class="AS-vision-child AS-vision-score" title="Vision Score">{{ player['VisionScore'] }}</p>
-                                <div class="AS-vision-child AS-vision-wards">
+                                <p class="AS-vision-child AS-vision-score align-end" title="Vision Score">{{ player['VisionScore'] }}</p>
+                                <div class="AS-vision-child AS-vision-wards align-baseline">
                                     <span title="Wards Placed">{{ player['WardsPlaced'] }}</span>
                                     <span title="Control Wards">| {{ player['ControlWards'] }} |</span>
                                     <span title="Wards Destroyed">{{ player['WardsDestroyed'] }}</span>
@@ -171,8 +171,8 @@
                             </div>
                         <!-- Damage -->
                             <div class="AS-player-stats-child AS-damage">
-                                <span class="text-center" title="Damage To Champions">{{ player['DamageToChampions'] }}</span>
-                                <span class="text-center" title="Damage Taken">{{ player['DamageTaken'] }}</span>
+                                <span class="align-end" title="Damage To Champions">{{ player['DamageToChampions'] }}</span>
+                                <span class="align-baseline" title="Damage Taken">{{ player['DamageTaken'] }}</span>
                             </div>
                         <!-- Items -->
                             <div class="AS-player-stats-child AS-items">
@@ -215,24 +215,24 @@
                                     <img class="icon-default" src="{{ player['SecondaryRune'] }}">
                                 </div>
                                 <div class="AS-champ-child AS-player-name">
-                                    <p><a class="player-link" href="/lol/{{ PAGE_INFO['region'] }}/{{ player['PlayerName'] }}">{{ player['PlayerName'] }}</a></p>
-                                    <p>{{ player['PlayerLevel'] }}</p>
+                                    <p class="align-end"><a class="player-link" href="/lol/{{ PAGE_INFO['region'] }}/{{ player['PlayerName'] }}">{{ player['PlayerName'] }}</a></p>
+                                    <p class="align-baseline">{{ player['PlayerLevel'] }}</p>
                                 </div>
                             </div>
                         <!-- KDA -->
                             <div class="AS-player-stats-child AS-KDA">
-                                <p class="text-center">{{ player['Kills'] }}/{{ player['Deaths'] }}/{{ player['Assists'] }}</p>
-                                <p class="text-center">{{ player['KDA'] }}</p>
+                                <p class="align-end">{{ player['Kills'] }}/{{ player['Deaths'] }}/{{ player['Assists'] }}</p>
+                                <p class="align-baseline">[{{ player['KDA'] }}]</p>
                             </div>
                         <!-- CS -->
                             <div class="AS-player-stats-child AS-CS">
-                                <p class="text-center">{{ player['TotalMinionsKilled'] }}</p>
-                                <p class="text-center">({{ player['CSPerMinute'] }})</p>
+                                <p class="align-end">{{ player['TotalMinionsKilled'] }}</p>
+                                <p class="align-baseline">{{ player['CSPerMinute'] }}/m</p>
                             </div>
                         <!-- Vision -->
                             <div class="AS-player-stats-child AS-vision">
-                                <p class="AS-vision-child AS-vision-score" title="Vision Score">{{ player['VisionScore'] }}</p>
-                                <div class="AS-vision-child AS-vision-wards">
+                                <p class="AS-vision-child AS-vision-score align-end" title="Vision Score">{{ player['VisionScore'] }}</p>
+                                <div class="AS-vision-child AS-vision-wards align-baseline">
                                     <span title="Wards Placed">{{ player['WardsPlaced'] }}</span>
                                     <span title="Control Wards">| {{ player['ControlWards'] }} |</span>
                                     <span title="Wards Destroyed">{{ player['WardsDestroyed'] }}</span>
@@ -240,8 +240,8 @@
                             </div>
                         <!-- Damage -->
                             <div class="AS-player-stats-child AS-damage">
-                                <span class="text-center" title="Damage To Champions">{{ player['DamageToChampions'] }}</span>
-                                <span class="text-center" title="Damage Taken">{{ player['DamageTaken'] }}</span>
+                                <span class="align-end" title="Damage To Champions">{{ player['DamageToChampions'] }}</span>
+                                <span class="align-baseline" title="Damage Taken">{{ player['DamageTaken'] }}</span>
                             </div>
                         <!-- Items -->
                             <div class="AS-player-stats-child AS-items">
