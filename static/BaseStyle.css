@@ -231,8 +231,8 @@ nav button {
         }
             .in-game-level {
                 position: absolute;
-                bottom: 0.1rem;
-                right: 0.1rem;
+                bottom: 0px;
+                right: 0px;
                 border-top-left-radius: 0.33rem;
                 padding: 0.15rem;
                 font-size: 0.8rem;
@@ -417,7 +417,7 @@ nav button {
             overflow: auto;
         }
 
-        .AS-result{
+        .AS-champ{
             display: grid;
             grid-template-columns: 2fr 1fr 0.95fr 6fr;
             grid-template-areas: 
@@ -425,7 +425,7 @@ nav button {
                 "champ spell rune name";
             column-gap: 0.1rem;
         }
-            .AS-result-child {
+            .AS-champ-child {
                 display: grid;
                 width: 100%;
                 height: 100%;
@@ -459,6 +459,26 @@ nav button {
                 font-size: 0.75rem;
             }
         
+        .AS-vision{
+            display: grid;
+            grid-template-areas: 
+                "Vision"
+                "Wards";
+            justify-content: center;
+            align-items: center;
+        }
+            .AS-vision-child{
+                text-align: center;
+            }
+            .AS-vision-score{
+                grid-area: Vision;
+            }
+            .AS-vision-wards {
+                grid-area: Wards;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+
         .AS-items{
             display: grid;
             grid-template-columns: repeat(7, 1fr);
