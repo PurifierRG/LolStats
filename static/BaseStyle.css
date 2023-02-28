@@ -17,6 +17,8 @@
     --button-color: rgb(236 205 0 / 90%);
     --button-color-br: rgb(255 217 0);
 
+    --player-color: rgb(175 90 0 / 1);
+
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
@@ -106,6 +108,10 @@ nav button {
 }
 
 /* Generic Stuff ------------------------------------------------------------------------------------------------ */
+
+.player-highlight{
+    background-color: var(--player-color) !important;
+}
 
 .icon-default {
     justify-self: center;
@@ -488,6 +494,9 @@ nav button {
                 align-items: center;
                 padding-left: 0.3rem;
                 font-size: 0.75rem;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
             }
         
         .AS-KDA{

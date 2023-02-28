@@ -1,26 +1,33 @@
 import requests
 from helpers import GenericImages as GI
 from helpers import cache
+import concurrent.futures
 
 #------------------------------------------------------------------------------------------------------
 
 def getMatchIDs(api, shard, puuid):   
     url = f"https://{shard}.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids"
-    response = requests.get(url, params={'api_key':api, 'count':10})
+    response = requests.get(url, params={'api_key':api, 'count':20})
     resp = response.json()
     return resp
 
+#------------------------------------------------------------------------------------------------------
 
-def getMatchDetails(api, shard, matchID):
+def getAllMatchDetails(api, shard, matchID):
     result = []
-    
-    for id in matchID:
-        url = f"https://{shard}.api.riotgames.com/lol/match/v5/matches/{id}"
-        response = requests.get(url, params={'api_key':api})
-        resp = response.json()
-        result.append(resp)
-    
+
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        threadobj = [executor.submit(getMatchDetails, api, shard, match) for match in matchID]
+        for cf in concurrent.futures.as_completed(threadobj):
+            result.append(cf.result())
+
     return result
+
+def getMatchDetails(api, shard, id):
+    url = f"https://{shard}.api.riotgames.com/lol/match/v5/matches/{id}"
+    response = requests.get(url, params={'api_key':api})
+    resp = response.json()
+    return(resp)
 
 #------------------------------------------------------------------------------------------------------
 

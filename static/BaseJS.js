@@ -34,3 +34,9 @@ function ChangeDisplay(match_id)
         stats_Button.innerHTML = "<p>&#9661;</p>";
     }
 }
+
+function PlayerHighlight(id)
+{
+    let element = document.getElementById(id);
+    element.classList.add('player-highlight');
+}

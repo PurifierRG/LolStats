@@ -131,7 +131,12 @@
             <!-- Team Blue ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
                 {% for player in Player_Details[i] %}
                     {% if player['PlayerTeam'] == 'Blue' %}
-                        <div class="all-stats-child AS-player-stats AS-team-blue">
+                        <div class="all-stats-child AS-player-stats AS-team-blue" id="AS-{{i}}-TB-{{ player['PlayerName'] }}">
+                            
+                            {% if player['PlayerName'] == PAGE_INFO['Username'] %}
+                            <script> PlayerHighlight("AS-{{i}}-TB-{{ player['PlayerName'] }}") </script> <!-- Pass ID of upper element -->
+                            {% endif %}
+                            
                         <!-- Champion -->
                             <div class="AS-player-stats-child AS-champ">
                                 <div class="AS-champ-child AS-champ-image">
@@ -200,7 +205,12 @@
             <!-- Team Red -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
                 {% for player in Player_Details[i] %}
                     {% if player['PlayerTeam'] == 'Red' %}
-                        <div class="all-stats-child AS-player-stats AS-team-red">
+                        <div class="all-stats-child AS-player-stats AS-team-red" id="AS-{{i}}-TR-{{ player['PlayerName'] }}">
+                            
+                            {% if player['PlayerName'] == PAGE_INFO['Username'] %}
+                            <script> PlayerHighlight("AS-{{i}}-TR-{{ player['PlayerName'] }}") </script> <!-- Pass ID of upper element -->
+                            {% endif %}
+
                         <!-- Champion -->
                             <div class="AS-player-stats-child AS-champ">
                                 <div class="AS-champ-child AS-champ-image">
