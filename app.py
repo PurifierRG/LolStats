@@ -41,8 +41,8 @@ def MatchHistory(region, username):
     match_details = MH.getAllMatchDetails(api, shard, match_ids)
     match_info = MH.getMatchInfo(match_details)
     match_player_info = MH.getMatchPlayersDetails(version, match_details)
-    # live_player_info = LG.getLiveGameInfo(api, region, version, user_info['summonerID'])
 
+    live_player_info = LG.getLiveGameInfo(api, region, version, user_info['summonerID'])
     PageInfo = {
         'Title': f"{user_info['name']} - Match History",
         'Username': user_info['name'], 
@@ -70,13 +70,12 @@ def TestJSON(region, username):
     user_info = UID.getUser(api, region, username)
     rankdetails = UID.getRankInfo(api, region, user_info['summonerID'])
 
-    live_player_info = LG.getLiveGameInfo(api, region, version, user_info['summonerID'])
-
     match_ids = MH.getMatchIDs(api, shard, user_info['puuID'],)
-    match_details = MH.getMatchDetails(api, shard, match_ids)
+    match_details = MH.getAllMatchDetails(api, shard, match_ids)
     match_info = MH.getMatchInfo(match_details)
     match_player_info = MH.getMatchPlayersDetails(version, match_details)
     
+    live_player_info = LG.getLiveGameInfo(api, region, version, user_info['summonerID'])
     return match_details
 
 #------------------------------------------------------------------------------------------------------

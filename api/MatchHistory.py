@@ -14,14 +14,10 @@ def getMatchIDs(api, shard, puuid):
 #------------------------------------------------------------------------------------------------------
 
 def getAllMatchDetails(api, shard, matchID):
-    result = []
-
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        threadobj = [executor.submit(getMatchDetails, api, shard, match) for match in matchID]
-        for cf in concurrent.futures.as_completed(threadobj):
-            result.append(cf.result())
+        result = executor.map(getMatchDetails, [api]*len(matchID), [shard]*len(matchID), matchID)
+    return list(result)
 
-    return result
 
 def getMatchDetails(api, shard, id):
     url = f"https://{shard}.api.riotgames.com/lol/match/v5/matches/{id}"

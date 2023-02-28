@@ -13,5 +13,7 @@ def getChampsInfo(version, champID):
             ChampDetails = {}
             ChampDetails['ChampionName'] = response['data'][champ]['id']
             ChampInfo.append(ChampDetails)
-    print(ChampInfo)
+
     return ChampInfo
+
+#------------------------------------------------------------------------------------------------------
