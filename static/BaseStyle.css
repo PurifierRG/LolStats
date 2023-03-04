@@ -33,6 +33,123 @@
     box-sizing: border-box;
 }
 
+.container{
+    width: 100%;
+}
+
+/* HOME --------------------------------------------------------------------------------------------------------- */
+
+.home-body {
+    background-image: url('../static/images/lol-background.jpg');
+    background-size: 100% 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 10fr;
+}
+
+.home-container{
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    align-content: center;
+    justify-content: center;
+}
+
+.welcome-text{
+    display: grid;
+    align-items: end;
+    text-shadow: 
+        black 0.01rem 0.01rem,
+        black 0.02rem 0.02rem,
+        black 0.03rem 0.03rem,
+        black 0.04rem 0.04rem,
+        black 0.05rem 0.05rem,
+        black 0.06rem 0.06rem,
+        black 0.07rem 0.07rem,
+        black 0.08rem 0.08rem,
+        black 0.09rem 0.09rem,
+        black 0.1rem 0.1rem,
+        black 0.11rem 0.11rem,
+        black 0.12rem 0.12rem,
+        black 0.13rem 0.13rem,
+        black 0.14rem 0.14rem,
+        black 0.15rem 0.15rem;
+}
+
+.home-search{
+    display: grid;
+    align-items: baseline;
+    padding-top: 0.5rem;
+}
+
+.home-logo {
+    grid-column-start: 1;
+    grid-column-end: 9;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    text-shadow: 
+        black 0.01rem 0.01rem,
+        black 0.02rem 0.02rem,
+        black 0.03rem 0.03rem,
+        black 0.04rem 0.04rem,
+        black 0.05rem 0.05rem,
+        black 0.06rem 0.06rem,
+        black 0.07rem 0.07rem,
+        black 0.08rem 0.08rem,
+        black 0.09rem 0.09rem,
+        black 0.1rem 0.1rem,
+        black 0.11rem 0.11rem,
+        black 0.12rem 0.12rem,
+        black 0.13rem 0.13rem,
+        black 0.14rem 0.14rem,
+        black 0.15rem 0.15rem;
+}
+
+.home-input-text {
+    height: 1.5rem;
+    border: 0px;
+    border-radius: 0.5rem;
+    padding-left: 0.5rem;
+    background-color: var(--other-color-2);
+}
+.home-input-text:focus{
+    outline: none;
+}
+
+.home-select {
+    font-weight: bold;
+    text-align: center;
+    height: 1.5rem;
+    width: 5rem;
+    background-color: var(--other-color-2);
+    border-radius: 0.5rem;
+}
+
+.home-button {
+    box-sizing: border-box;
+    height: 1.5rem;
+    width: 5rem;
+    background-color: #003f7a;
+    border: 0.1rem;
+    border-style: outset;
+    border-radius: 0.5rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.home-button:hover {
+    cursor: pointer;
+    background-color: var(--color);
+}
+.home-button:active {
+    cursor: pointer;
+    border-style: inset;
+    background-color: var(--color);
+}
+
 /* NAVBAR ------------------------------------------------------------------------------------------------------- */
 
 nav {
@@ -51,34 +168,54 @@ nav {
     z-index: 1000;
 }
 
+nav a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+}
+nav a:visited {
+    color: var(--color);
+}
+nav a:hover {
+    color: var(--other-color-2);
+}
+
 .logo {
     grid-area: logo;
     justify-self: center;
     align-self: center;
+    display: grid;
+    justify-content: center;
+    width: 100%;
+    text-shadow: 
+        black 0.01rem 0.01rem,
+        black 0.02rem 0.02rem,
+        black 0.03rem 0.03rem,
+        black 0.04rem 0.04rem,
+        black 0.05rem 0.05rem,
+        black 0.06rem 0.06rem,
+        black 0.07rem 0.07rem,
+        black 0.08rem 0.08rem,
+        black 0.09rem 0.09rem,
+        black 0.1rem 0.1rem,
+        black 0.11rem 0.11rem,
+        black 0.12rem 0.12rem,
+        black 0.13rem 0.13rem,
+        black 0.14rem 0.14rem,
+        black 0.15rem 0.15rem;
 }
 
 .nav {
     grid-area: nav;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
     justify-self: center;
     align-self: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     list-style: none;
     width: 50%;
 }
     .nav li {
         text-align: center;
-    }
-    .nav li a {
-        display: block;
-        width: 100%;
-        text-decoration: none;
-    }
-    .nav li a:visited {
-        color: var(--color);
-    }
-    .nav li a:hover {
-        color: var(--other-color-2);
     }
 
 .search {
@@ -169,7 +306,7 @@ nav button {
 
 /* -------------------------------------------------------------------------------------------------------------- */
 
-.container {
+.content {
     display: grid;
     grid-template-columns: repeat(6,1fr);
     grid-template-areas: "sidebar-left Main Main Main Main sidebar-right";
@@ -178,7 +315,7 @@ nav button {
     color: var(--other-color-2);
 }
 
-.content {
+.main {
     grid-area: Main;
     display: grid;
     grid-template-columns: 1fr;
@@ -190,15 +327,15 @@ nav button {
 
 /* -------------------------------------------------------------------------------------------------------------- */
 .match {
+    justify-self: center;
+    align-self: center;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 0.15fr;
     grid-template-areas: 
         "match-data iconz stats players stats-button"
         "full-stats full-stats full-stats full-stats full-stats";
-    justify-self: center;
-    align-self: center;
     width: 100%;
-    margin: 0.15rem;
+    margin: 0.2rem;
     border: 0.3rem outset;
     font-size: 0.7rem;
     overflow: auto;
@@ -345,10 +482,10 @@ nav button {
         text-decoration: underline;
     }
         .participants-child {
-            display: grid;
-            grid-template-columns: 1fr 4fr;
             justify-self: center;
             align-self: center;
+            display: grid;
+            grid-template-columns: 1fr 4fr;
             align-items: center;
             align-content: stretch;
             width: 100%;
@@ -413,6 +550,7 @@ nav button {
     grid-area: full-stats;
     display: grid;
     grid-template-columns: 1fr;
+    margin-top: 0.5rem;
     overflow: auto;
 }
     .all-stats-child{
