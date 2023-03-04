@@ -39,7 +39,7 @@
 
 /* HOME --------------------------------------------------------------------------------------------------------- */
 
-.home-body {
+/* .home-body {
     background-image: url('../static/images/lol-background.jpg');
     background-size: 100% 100%;
     height: 100vh;
@@ -148,7 +148,7 @@
     cursor: pointer;
     border-style: inset;
     background-color: var(--color);
-}
+} */
 
 /* NAVBAR ------------------------------------------------------------------------------------------------------- */
 
@@ -682,3 +682,77 @@ nav button {
         }
 
 /* -------------------------------------------------------------------------------------------------------------- */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url('../static/test.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 50px;
+  text-align: center;
+  /* filter: blur(5px); */
+}
+
+.logo {
+  max-width: 300px;
+}
+
+.description {
+  font-size: 20px;
+  text-align: center;
+  max-width: 600px;
+  margin-bottom: 50px;
+}
+
+.home-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-search form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-search label {
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+.home-search input {
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+  margin-right: 20px;
+}
+
+.home-search select {
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+  margin-right: 20px;
+}
+
+.home-search button[type="submit"] {
+  background-color: #4286f4;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 10px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 20px;
+}
+
+.home-search button[type="submit"]:hover {
+  background-color: #316cd9;
+}
