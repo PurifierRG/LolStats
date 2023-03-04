@@ -1,5 +1,45 @@
-{% extends "Layout.html" %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 
-{% block Content %}
-<h1 style="text-align: center;"> Thank You! </h1>
-{% endblock Content %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='BaseStyle.css') }}">
+    <script src="{{url_for('static', filename='BaseJS.js')}}"></script>
+    <title>LoL Stats</title>
+</head>
+
+<body class="home-body">
+    <nav>
+        <div class="home-logo"><a href="/"> LoLStats </a></div>
+    </nav>
+
+    <div class="home-container">
+        <h1 class="welcome-text text-center"> Welcome! </h1>
+        <div class="home-search">
+            <form action="/lol">
+                <select name="region" class="home-select">
+                    <option value="sg2">SG</option>
+                    <option value="na1">NA</option>
+                    <option value="euw1">EUW</option>
+                    <option value="eun1">EUNE</option>
+                    <option value="jp1">JP</option>
+                    <option value="br1">BR</option>
+                    <option value="la1">LA</option>
+                    <option value="la2">LA2</option>
+                    <option value="tr1">TR</option>
+                    <option value="ru">RU</option>
+                    <option value="ph2">PH</option>
+                    <option value="th2">TH</option>
+                    <option value="tw2">TW</option>
+                    <option value="vn2">VN</option>
+                </select>
+                <input type="text" name="username" class="home-input-text">
+                <button type="submit" formaction="/lol" formmethod="post" class="home-button">Search</button>
+                <!-- <button type="submit" formaction="/test" formmethod="post" class="home-button">Test</button> -->
+            </form>
+        </div> 
+    </div>
+</body>
+</html>
