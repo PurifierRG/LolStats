@@ -456,7 +456,7 @@ nav button {
             display: grid;
             justify-content: space-around;
             justify-items: center;
-            font-size: 1.2rem;
+            font-size: 0.77rem;
         }
             .kda-child {
                 justify-self: center;
