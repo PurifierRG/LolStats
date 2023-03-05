@@ -40,8 +40,10 @@
 /* HOME --------------------------------------------------------------------------------------------------------- */
 
 .home-body {
-    background-image: url('../static/images/lol-background.jpg');
+    background-image: url('../static/images/lol-teemo.webp');
     background-size: 100% 100%;
+    background-color: rgb(177 177 177);
+    background-blend-mode: multiply;
     height: 100vh;
     display: grid;
     grid-template-rows: 1fr 10fr;
@@ -50,36 +52,10 @@
 .home-container{
     height: 100%;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    align-content: center;
     justify-content: center;
-}
-
-.welcome-text{
-    display: grid;
-    align-items: end;
-    text-shadow: 
-        black 0.01rem 0.01rem,
-        black 0.02rem 0.02rem,
-        black 0.03rem 0.03rem,
-        black 0.04rem 0.04rem,
-        black 0.05rem 0.05rem,
-        black 0.06rem 0.06rem,
-        black 0.07rem 0.07rem,
-        black 0.08rem 0.08rem,
-        black 0.09rem 0.09rem,
-        black 0.1rem 0.1rem,
-        black 0.11rem 0.11rem,
-        black 0.12rem 0.12rem,
-        black 0.13rem 0.13rem,
-        black 0.14rem 0.14rem,
-        black 0.15rem 0.15rem;
-}
-
-.home-search{
-    display: grid;
-    align-items: baseline;
-    padding-top: 0.5rem;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
 }
 
 .home-logo {
@@ -89,66 +65,97 @@
     justify-content: center;
     align-items: center;
     font-size: 1.3rem;
-    text-shadow: 
-        black 0.01rem 0.01rem,
-        black 0.02rem 0.02rem,
-        black 0.03rem 0.03rem,
-        black 0.04rem 0.04rem,
-        black 0.05rem 0.05rem,
-        black 0.06rem 0.06rem,
-        black 0.07rem 0.07rem,
-        black 0.08rem 0.08rem,
-        black 0.09rem 0.09rem,
-        black 0.1rem 0.1rem,
-        black 0.11rem 0.11rem,
-        black 0.12rem 0.12rem,
-        black 0.13rem 0.13rem,
-        black 0.14rem 0.14rem,
-        black 0.15rem 0.15rem;
 }
 
-.home-input-text {
-    height: 1.5rem;
-    border: 0px;
-    border-radius: 0.5rem;
-    padding-left: 0.5rem;
-    background-color: var(--other-color-2);
-}
-.home-input-text:focus{
-    outline: none;
+.welcome-text{
+    display: grid;
+    align-items: end;
+    color: var(--other-color-2);
 }
 
-.home-select {
-    font-weight: bold;
-    text-align: center;
-    height: 1.5rem;
-    width: 5rem;
-    background-color: var(--other-color-2);
-    border-radius: 0.5rem;
+.home-search{
+    display: grid;
+    align-items: baseline;
+    padding-top: 0.5rem;
 }
 
-.home-button {
-    box-sizing: border-box;
-    height: 1.5rem;
-    width: 5rem;
-    background-color: #003f7a;
-    border: 0.1rem;
-    border-style: outset;
-    border-radius: 0.5rem;
-    padding-left: 0.2rem;
-    padding-right: 0.2rem;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
-.home-button:hover {
-    cursor: pointer;
-    background-color: var(--color);
-}
-.home-button:active {
-    cursor: pointer;
-    border-style: inset;
-    background-color: var(--color);
-}
+    .home-form{
+        display: grid;
+        grid-template-columns: 4rem 15rem 4rem;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        align-items: center;
+    }
+
+        .home-input-text {
+            height: 2rem;
+            width: 95%;
+            border: 0.1rem solid;
+            border-radius: 0.5rem;
+            padding-left: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+            .home-form > input[type="text"]{
+                color: var(--other-color-2);
+                background: black;
+                opacity: 0.75;
+                outline: none;
+            }
+            .home-form > input[type="text"]:hover {
+                background: black;
+                opacity: 0.85;
+            }
+            .home-form > input[type="text"]:focus {
+                background: black;
+                opacity: 0.85;
+            }
+
+            .home-form > select{
+                color: var(--other-color-2);
+                background: var(--nav-bg-color);
+                border: 0.1rem solid;
+            }
+
+        .home-select {
+            height: 2rem;
+            width: 95%;
+            border-radius: 0.5rem;
+            background-color: var(--nav-bg-color);
+            color: var(--other-color-2);
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+            .home-select:hover {
+                cursor: pointer;
+                background-color: rgb(8 25 34);
+            }
+
+        .home-button {
+            box-sizing: border-box;
+            height: 2rem;
+            width: 95%;
+            border: 0.1rem;
+            border-style: outset;
+            border-radius: 0.5rem;
+            padding-left: 0.2rem;
+            padding-right: 0.2rem;
+            background-color: var(--nav-bg-color);
+            color: var(--other-color-2);
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        .home-button:hover {
+            cursor: pointer;
+            background-color: rgb(8 25 34);
+        }
+        .home-button:active {
+            cursor: pointer;
+            border-style: inset;
+            background-color: rgb(8 25 34);
+        }
 
 /* NAVBAR ------------------------------------------------------------------------------------------------------- */
 
@@ -187,22 +194,6 @@ nav a:hover {
     display: grid;
     justify-content: center;
     width: 100%;
-    text-shadow: 
-        black 0.01rem 0.01rem,
-        black 0.02rem 0.02rem,
-        black 0.03rem 0.03rem,
-        black 0.04rem 0.04rem,
-        black 0.05rem 0.05rem,
-        black 0.06rem 0.06rem,
-        black 0.07rem 0.07rem,
-        black 0.08rem 0.08rem,
-        black 0.09rem 0.09rem,
-        black 0.1rem 0.1rem,
-        black 0.11rem 0.11rem,
-        black 0.12rem 0.12rem,
-        black 0.13rem 0.13rem,
-        black 0.14rem 0.14rem,
-        black 0.15rem 0.15rem;
 }
 
 .nav {
@@ -248,6 +239,25 @@ nav button {
 
 .player-highlight{
     background-color: var(--player-color) !important;
+}
+
+.text-shadow-default{
+    text-shadow: 
+        black 0.01rem 0.01rem,
+        black 0.02rem 0.02rem,
+        black 0.03rem 0.03rem,
+        black 0.04rem 0.04rem,
+        black 0.05rem 0.05rem,
+        black 0.06rem 0.06rem,
+        black 0.07rem 0.07rem,
+        black 0.08rem 0.08rem,
+        black 0.09rem 0.09rem,
+        black 0.1rem 0.1rem,
+        black 0.11rem 0.11rem,
+        black 0.12rem 0.12rem,
+        black 0.13rem 0.13rem,
+        black 0.14rem 0.14rem,
+        black 0.15rem 0.15rem;
 }
 
 .icon-default {
@@ -335,6 +345,7 @@ nav button {
         "match-data iconz stats players stats-button"
         "full-stats full-stats full-stats full-stats full-stats";
     width: 100%;
+    max-width: 70rem;
     margin: 0.2rem;
     border: 0.3rem outset;
     font-size: 0.7rem;
@@ -342,8 +353,8 @@ nav button {
 }
     .match-child {
         overflow: auto;
-        min-width: 100%;
-        min-height: 100%;
+        width: 100%;
+        height: 100%;
     }
     .match-win {
         background-color: var(--win-color);
@@ -385,6 +396,7 @@ nav button {
             "items items items items items items items";
         padding-top: 0.3rem;
         padding-bottom: 0.3rem;
+        max-width: 15rem;
     }
         .player-icon-child {
             align-self: center;
@@ -430,6 +442,7 @@ nav button {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             column-gap: 0.1rem;
+            width: 100%;
         }
             .items-image-child {
                 justify-self: center;
@@ -443,7 +456,7 @@ nav button {
             display: grid;
             justify-content: space-around;
             justify-items: center;
-            font-size: 1.2em;
+            font-size: 1.2rem;
         }
             .kda-child {
                 justify-self: center;
@@ -455,17 +468,13 @@ nav button {
                 align-self:baseline;
             }
                 
-        .match-player-stats {
-            grid-area: stats;
-            display: grid;
-            justify-content: start;
-            align-content: stretch;
-            padding-left: 3rem;
-        }
-            .match-player-stats-child {
-                align-self: center;
-            }
-            
+    .match-player-stats {
+        grid-area: stats;
+        display: grid;
+        justify-content: center;
+        align-content: space-around;
+    }
+
     .participants {
         grid-area: players;
         display: grid;

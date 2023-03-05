@@ -12,9 +12,9 @@
                     {% if player['PlayerName'] == PAGE_INFO['Username'] %}
                     <!-- INFO -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
                         <div class="match-child match-info">
-                            <div class="match-info-child"><p>Game Mode: {{ Match_Details[i]['GameMode'] }}</p></div>
-                            <div class="match-info-child"><p>Game Type: {{ Match_Details[i]['GameType'] }}</p></div>
-                            <div class="match-info-child"><p>Duration: {{ Match_Details[i]['GameTime'] }}</p></div>
+                            <p class="match-info-child">Game Mode: {{ Match_Details[i]['GameMode'] }}</p>
+                            <p class="match-info-child">Game Type: {{ Match_Details[i]['GameType'] }}</p>
+                            <p class="match-info-child">Duration: {{ Match_Details[i]['GameTime'] }}</p>
                         </div>
                     <!-- ICONS ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
                         <div class="match-child player-icon">
@@ -56,18 +56,12 @@
                         </div>
                     <!-- Stats ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
                         <div class="match-child match-player-stats">
-
-                            <div class="match-player-stats-child damage-dealt">
                                 <p>Damage Dealt: {{ player['DamageToChampions'] }}</p>
-                            </div>
-                            <div class="match-player-stats-child damage-taken">
                                 <p>Damage Taken: {{ player['DamageTaken'] }}</p>
-                            </div>
-                            <div class="match-player-stats-child creep-score">
-                                CS: {{ player['TotalMinionsKilled'] }}
-                                ({{ player['CSPerMinute'] }})
-                            </div>
-                            <div class="match-player-stats-child win-status">
+                                <p>
+                                    CS: {{ player['TotalMinionsKilled'] }} 
+                                    ({{ player['CSPerMinute'] }})
+                                </p>
                                 {% if player['Win'] == 'Remake'%}
                                     <p><b>Remake</b></p>
                                 {% elif player['Win'] %}
@@ -75,8 +69,6 @@
                                 {% else %}
                                     <p><b>Defeat</b></p>
                                 {% endif %}
-                            </div>
-
                         </div>
                     <!-- Participants ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ -->
                         <div class="match-child participants">
@@ -85,7 +77,7 @@
                                 {% for player in Player_Details[i] %}
                                     {% if player['PlayerTeam'] == 'Blue' %}
                                         <div class="team-blue-child participant-icon"><img class="icon-default" src="{{ player['ChampionImage'] }}"></div>
-                                        <div class="team-blue-child participant-name"><a class="player-link" href="/lol/{{ PAGE_INFO['region'] }}/{{ player['PlayerName'] }}">{{ player['PlayerName'] }}</a></div>
+                                        <p class="team-blue-child participant-name"><a class="player-link" href="/lol/{{ PAGE_INFO['region'] }}/{{ player['PlayerName'] }}">{{ player['PlayerName'] }}</a></p>
                                     {% endif %}
                                 {% endfor %}
                             </div>
@@ -93,7 +85,7 @@
                                 {% for player in Player_Details[i] %}
                                     {% if player['PlayerTeam'] == 'Red' %}
                                         <div class="team-red-child participant-icon"><img class="icon-default" src="{{ player['ChampionImage'] }}"></div>
-                                        <div class="team-red-child participant-name"><a class="player-link" href="/lol/{{ PAGE_INFO['region']}}/{{player['PlayerName'] }}">{{ player['PlayerName'] }}</a></div>
+                                        <p class="team-red-child participant-name"><a class="player-link" href="/lol/{{ PAGE_INFO['region']}}/{{player['PlayerName'] }}">{{ player['PlayerName'] }}</a></p>
                                     {% endif %}
                                 {% endfor %}
                             </div>
