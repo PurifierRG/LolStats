@@ -375,16 +375,9 @@ nav button {
     .match-info {
         grid-area: match-data;
         display: grid;
-        grid-template-areas:
-            "info"
-            "info"
-            "info";
         justify-content: space-around;
-        align-content: stretch;
+        align-content: space-evenly;
     }
-        .match-info-child {
-            align-self: center;
-        }
 
     .player-icon {
         grid-area: iconz;
@@ -472,7 +465,7 @@ nav button {
         grid-area: stats;
         display: grid;
         justify-content: center;
-        align-content: space-around;
+        align-content: space-evenly;
     }
 
     .participants {

@@ -32,8 +32,26 @@ def getMatchInfo(data):
 
     for key in data:
         match_info = {}
-        match_info['GameMode'] = key['info']['gameMode']
-        match_info['GameType'] = key['info']['gameType']
+        match_info['QueueID'] = key['info']['queueId']
+        match_info['QueueType'] = 'Other'
+
+        if match_info['QueueID'] == 420:
+            match_info['QueueType'] = 'Ranked Solo'
+        elif match_info['QueueID'] == 440:
+            match_info['QueueType'] = 'Ranked Flex'
+        elif match_info['QueueID'] == 430:
+            match_info['QueueType'] = 'Normal Blind'
+        elif match_info['QueueID'] == 400:
+            match_info['QueueType'] = 'Normal Draft'
+        elif match_info['QueueID'] == 450:
+            match_info['QueueType'] = 'ARAM'
+        elif match_info['QueueID'] == 830:
+            match_info['QueueType'] = 'Co-op [Intro]'
+        elif match_info['QueueID'] == 840:
+            match_info['QueueType'] = 'Co-op [Beginner]'
+        elif match_info['QueueID'] == 850:
+            match_info['QueueType'] = 'Co-op [Intermediate]'
+
         match_info['GameDuration'] = key['info']['gameDuration']
         match_info['GameTime'] = f"{int(key['info']['gameDuration']/60)}m {key['info']['gameDuration']%60}s"
         match_info_list.append(match_info)
