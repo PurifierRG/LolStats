@@ -76,7 +76,7 @@ def TestJSON(region, username):
     match_player_info = MH.getMatchPlayersDetails(version, match_details)
     
     live_player_info = LG.getLiveGameInfo(api, region, version, user_info['summonerID'])
-    return match_details
+    return match_details[0]
 
 #------------------------------------------------------------------------------------------------------
 

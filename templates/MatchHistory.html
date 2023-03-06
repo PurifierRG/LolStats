@@ -12,9 +12,15 @@
                     {% if player['PlayerName'] == PAGE_INFO['Username'] %}
                     <!-- INFO -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
                         <div class="match-child match-info">
-                            <p class="match-info-child">Game Mode: {{ Match_Details[i]['GameMode'] }}</p>
-                            <p class="match-info-child">Game Type: {{ Match_Details[i]['GameType'] }}</p>
-                            <p class="match-info-child">Duration: {{ Match_Details[i]['GameTime'] }}</p>
+                            <p>{{ Match_Details[i]['QueueType'] }}</p>
+                            <p>{{ Match_Details[i]['GameTime'] }}</p>
+                            {% if player['Win'] == 'Remake'%}
+                                <p><b>Remake</b></p>
+                            {% elif player['Win'] %}
+                                <p><b>Victory</b></p>
+                            {% else %}
+                                <p><b>Defeat</b></p>
+                            {% endif %}
                         </div>
                     <!-- ICONS ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
                         <div class="match-child player-icon">
@@ -56,19 +62,12 @@
                         </div>
                     <!-- Stats ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
                         <div class="match-child match-player-stats">
-                                <p>Damage Dealt: {{ player['DamageToChampions'] }}</p>
+                                <p>Damage Dealt&nbsp;: {{ player['DamageToChampions'] }}</p>
                                 <p>Damage Taken: {{ player['DamageTaken'] }}</p>
                                 <p>
                                     CS: {{ player['TotalMinionsKilled'] }} 
                                     ({{ player['CSPerMinute'] }})
                                 </p>
-                                {% if player['Win'] == 'Remake'%}
-                                    <p><b>Remake</b></p>
-                                {% elif player['Win'] %}
-                                    <p><b>Victory</b></p>
-                                {% else %}
-                                    <p><b>Defeat</b></p>
-                                {% endif %}
                         </div>
                     <!-- Participants ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ -->
                         <div class="match-child participants">
