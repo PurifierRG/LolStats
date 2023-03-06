@@ -334,7 +334,7 @@ nav button:active {
     max-height: min-content;
     font-size: 1rem;
     color: var(--other-color-2);
-    background-image: url('../static/images/Pattern-img.png');
+    background-image: url('../static/images/Patterns/Black-6.webp');
 }
 
 .main {
