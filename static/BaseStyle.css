@@ -3,7 +3,7 @@
 :root {
     --bgcolor: rgb(25 74 80);
     --nav-bg-color: rgb(12 36 49);
-    --color: rgb(211 117 86);
+    --color: rgb(255 132 92);
     --other-color: rgb(216 162 140);
     --other-color-2: rgb(255 240 223);
     --secondary-color: rgb(255 212 88);
@@ -14,8 +14,7 @@
     --lose-color-br: rgb(68 0 0);
     --remake-color: rgb(20 20 20);
     --remake-color-br: rgb(32 32 32);
-    --button-color: rgb(236 205 0 / 90%);
-    --button-color-br: rgb(255 217 0);
+    --button-color: rgb(255 191 29);
 
     --player-color: rgb(175 90 0 / 1);
 
@@ -164,11 +163,9 @@ nav {
     grid-template-columns: 0.5rem repeat(6, 1fr) 0.5rem;
     grid-template-areas: "space logo nav nav nav search search";
     gap: 0.5rem;
-    height: 2rem;
-    min-height: 50px;
+    height: 3rem;
+    min-height: 3rem;
     background-color: var(--nav-bg-color);
-    border: 0.2rem outset #003b5b66;
-    border-radius: 6px;
     font-weight: bolder;
     position: sticky;
     top: 0;
@@ -216,23 +213,44 @@ nav a:hover {
 }
 
 nav input[type="text"] {
-    padding-left: 0.2rem;
-    border: 0.25rem inset #0c2431e6;
-    border-radius: 5px;
-    height: 1.5rem;
-    min-height: 25px;
+    height: 1.2rem;
     margin: 5px;
+    padding: 0.2rem 0.5rem;
+    border: 0px;
+    border-radius: 5px;
+    width: 40%;
+    background-color: var(--other-color-2);
 }
     nav input[type="text"]:focus {
         outline: none;
     }
 
 nav button {
-    height: 1.4rem;
-    min-height: 21px;
-    min-width: 43px;
+    min-width: 2.5rem;
+    padding: 0px 0.2rem;
+    font-weight: bold;
+    height: 1.3rem;
+    border: 0.1rem outset;
+    border-radius: 0.15rem;
+    background-color: var(--color);
+    border-color: var(--other-color-2);
+}
+nav button:hover {
+    cursor: pointer;
     background-color: var(--button-color);
-    border-color: var(--button-color-br);
+}
+nav button:active {
+    border: 0.1rem;
+    border-style: inset;
+}
+
+.nav-select {
+    height: 1.3rem;
+    width: 3rem;
+    max-width: max-content;
+    border-radius: 0.15rem;
+    background-color: var(--other-color-2);
+    font-weight: bold;
 }
 
 /* Generic Stuff ------------------------------------------------------------------------------------------------ */
@@ -307,13 +325,6 @@ nav button {
     padding: 0.1rem;
 }
 
-.small-select {
-    height: 1.4rem;
-    min-height: 21px;
-    width: 3rem;
-    max-width: max-content;
-}
-
 /* -------------------------------------------------------------------------------------------------------------- */
 
 .content {
@@ -323,6 +334,7 @@ nav button {
     max-height: min-content;
     font-size: 1rem;
     color: var(--other-color-2);
+    background-image: url('../static/images/Pattern-img.png');
 }
 
 .main {
@@ -331,8 +343,7 @@ nav button {
     grid-template-columns: 1fr;
     width: 100%;
     margin-top: 2rem;
-    padding: 0.2rem;
-    background-color: var(--secondary-color);
+    padding: 0.5rem;
 }
 
 /* -------------------------------------------------------------------------------------------------------------- */
@@ -341,13 +352,15 @@ nav button {
     align-self: center;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 0.15fr;
-    grid-template-areas: 
+    grid-template-areas:
         "match-data iconz stats players stats-button"
         "full-stats full-stats full-stats full-stats full-stats";
     width: 100%;
     max-width: 70rem;
     margin: 0.2rem;
-    border: 0.3rem outset;
+    padding: 0.3rem;
+    border: 0.15rem;
+    border-radius: 0.5rem;
     font-size: 0.7rem;
     overflow: auto;
 }
@@ -511,10 +524,15 @@ nav button {
                   
     .stats-button {
         grid-area: stats-button;
+        justify-self: center;
+        align-self: center;
         display: grid;
         justify-content: center;
         align-items: end;
+        width: 84%;
+        height: 96%;
         border: 0.1rem;
+        border-radius: 0.5rem;
         border-style: outset;
         border-color: var(--other-color-2);
         font-size: 1rem;
@@ -567,6 +585,7 @@ nav button {
         align-items: center;
         height: 1.5rem;
         background-color: black;
+        border-radius: 0.3rem;
     }
     .AS-team-blue{
         background-color: var(--win-color);
@@ -579,6 +598,7 @@ nav button {
         grid-template-columns: 4fr 2fr 2fr 2fr 3fr 4fr;
         padding: 0.1rem;
         border: 0.1rem solid black;
+        border-radius: 0.3rem;
     }
     .AS-player-stats + .AS-player-stats{
         border-top: 0px;
