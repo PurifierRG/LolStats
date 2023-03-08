@@ -199,9 +199,7 @@ nav a:hover {
     display: grid;
     grid-template-columns: repeat(2, max-content);
     grid-gap: 1rem;
-    justify-content: start;
     align-content: center;
-    justify-items: start;
     align-items: center;
     list-style: none;
 }
@@ -214,10 +212,15 @@ nav a:hover {
     justify-self: center;
     align-self: center;
 }
+    .search > form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
 nav input[type="text"] {
     height: 1.2rem;
-    margin: 5px;
+    margin: 0px 0.3rem;
     padding: 0.2rem 0.5rem;
     border: 0px;
     border-radius: 5px;
@@ -250,6 +253,7 @@ nav button:active {
     height: 1.3rem;
     width: 3rem;
     max-width: max-content;
+    margin-right: 0.3rem;
     border-radius: 0.15rem;
     background-color: var(--other-color-2);
     font-weight: bold;
