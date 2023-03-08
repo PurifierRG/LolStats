@@ -195,12 +195,15 @@ nav a:hover {
 
 .nav {
     grid-area: nav;
-    justify-self: center;
     align-self: center;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, max-content);
+    grid-gap: 1rem;
+    justify-content: start;
+    align-content: center;
+    justify-items: start;
+    align-items: center;
     list-style: none;
-    width: 50%;
 }
     .nav li {
         text-align: center;
@@ -230,18 +233,17 @@ nav button {
     padding: 0px 0.2rem;
     font-weight: bold;
     height: 1.3rem;
-    border: 0.1rem outset;
+    border: none;
     border-radius: 0.15rem;
-    background-color: var(--color);
-    border-color: var(--other-color-2);
+    background-color: var(--button-color);
 }
 nav button:hover {
     cursor: pointer;
-    background-color: var(--button-color);
+    background-color: var(--color);
 }
 nav button:active {
-    border: 0.1rem;
-    border-style: inset;
+    color: var(--other-color-2);
+    background-color: var(--player-color);
 }
 
 .nav-select {
@@ -529,39 +531,32 @@ nav button:active {
         display: grid;
         justify-content: center;
         align-items: end;
-        width: 84%;
-        height: 96%;
-        border: 0.1rem;
+        border: 0px none;
         border-radius: 0.5rem;
-        border-style: outset;
-        border-color: var(--other-color-2);
         font-size: 1rem;
-        color: var(--other-color-2);
+        color: rgb(205 205 205);
     }
     .stats-button:hover {
         cursor: pointer;
-    }
-    .stats-button:active {
-        border-style: inset;
-        border-color: rgb(97 99 100);
+        color: var(--other-color-2);
     }
     .stats-button-win {
-        background-color: var(--win-color);
-    }
-    .stats-button-win:hover {
         background-color: rgb(0 37 55);
     }
-    .stats-button-lose {
-        background-color: var(--lose-color);
+    .stats-button-win:hover {
+        background-color: rgb(0 45 66);
     }
-    .stats-button-lose:hover {
+    .stats-button-lose {
         background-color: rgb(70 6 7);
     }
+    .stats-button-lose:hover {
+        background-color: rgb(80 6 7);
+    }
     .stats-button-remake {
-        background-color: var(--remake-color);
+        background-color: rgb(34 34 34);
     }
     .stats-button-remake:hover {
-        background-color: rgb(34 34 34);
+        background-color: rgb(44 44 44);
     }
         
 /* All Stats ---------------------------- */
