@@ -66,6 +66,12 @@
     align-items: center;
     font-size: 1.3rem;
 }
+.home-logo a:visited {
+    color: var(--color);
+}
+.home-logo a:hover {
+    color: var(--color);
+}
 
 .welcome-text{
     display: grid;
@@ -178,10 +184,10 @@ nav a {
     width: 100%;
     text-decoration: none;
 }
-nav a:visited {
+.nav a:visited {
     color: var(--color);
 }
-nav a:hover {
+.nav a:hover {
     color: var(--other-color-2);
 }
 
@@ -192,6 +198,12 @@ nav a:hover {
     display: grid;
     justify-content: center;
     width: 100%;
+}
+.logo a:visited {
+    color: var(--color);
+}
+.logo a:hover {
+    color: var(--color);
 }
 
 .nav {
@@ -258,6 +270,12 @@ nav button:active {
     border-radius: 0.15rem;
     background-color: var(--other-color-2);
     font-weight: bold;
+}
+.nav-select:hover{
+    cursor: pointer;
+}
+.nav-select:focus{
+    outline: none;
 }
 
 /* Generic Stuff ------------------------------------------------------------------------------------------------ */
