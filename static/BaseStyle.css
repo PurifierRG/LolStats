@@ -22,6 +22,7 @@
     padding: 0px;
     box-sizing: border-box;
     background-color: var(--bgcolor);
+    background-image: url('../static/images/Patterns/Black-6.webp');
     color: var(--color);
     font-family: Inter;
 }
@@ -340,7 +341,6 @@ nav button:active {
     max-height: min-content;
     font-size: 1rem;
     color: var(--other-color-2);
-    background-image: url('../static/images/Patterns/Black-6.webp');
 }
 
 .main {
