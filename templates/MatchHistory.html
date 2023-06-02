@@ -2,6 +2,75 @@
 
 {% block Content %}
 <div class="content">
+
+    <div class="profile">
+
+        <div class="summoner profile-child">
+            <h2>{{PAGE_INFO['Username']}}</h2>
+        </div>
+
+        <div class="profile-child solo-ranked">
+            {% if Profile['Solo'] %}
+                <div class="rank-description">
+                    <h2>Solo Duo</h2>
+                    <img class="icon-default profile-rank-img" src = "/static/Images/Rank-Images/{{Profile['Solo']['rankIMG']}}">
+                </div>
+                <div class="rank-details">
+                    <div class="rank-attributes">
+                        <h4>Rank </h4>
+                        <h4>LP</h4>
+                        <h4>Wins</h4>
+                        <h4>Loss</h4>
+                        <h4>Win Rate</h4>
+                    </div>
+                    <div class="rank-values">
+                        <h4>{{ Profile['Solo']['rank'] }} {{ Profile['Solo']['division'] }}</h4>
+                        <h4>{{ Profile['Solo']['lp'] }}</h4>
+                        <h4>{{ Profile['Solo']['wins'] }}</h4>
+                        <h4>{{ Profile['Solo']['losses'] }}</h4>
+                        <h4>{{ Profile['Solo']['winRate'] }}</h4>
+                    </div>
+                </div>
+            {% else %}
+                <div class="unranked">
+                    <h2 class="unranked-attribute">Solo Duo</h2>
+                    <h2 class="unranked-value">Unranked</h2>
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="profile-child flex-ranked">
+            {% if Profile['Flex'] %}
+                <div class="rank-description">
+                    <h2>Flex</h2>
+                    <img class="icon-default profile-rank-img" src = "/static/Images/Rank-Images/{{Profile['Flex']['rankIMG']}}">
+                </div>
+                <div class="rank-details">
+                    <div class="rank-attributes">
+                        <h4>Rank </h4>
+                        <h4>LP</h4>
+                        <h4>Wins</h4>
+                        <h4>Loss</h4>
+                        <h4>Win Rate</h4>
+                    </div>
+                    <div class="rank-values">
+                        <h4>{{ Profile['Flex']['rank'] }} {{ Profile['Flex']['division'] }}</h4>
+                        <h4>{{ Profile['Flex']['lp'] }}</h4>
+                        <h4>{{ Profile['Flex']['wins'] }}</h4>
+                        <h4>{{ Profile['Flex']['losses'] }}</h4>
+                        <h4>{{ Profile['Flex']['winRate'] }}</h4>
+                    </div>
+                </div>
+            {% else %}
+                <div class="unranked">
+                    <h2 class="unranked-attribute">Flex</h2>
+                    <h2 class="unranked-value">Unranked</h2>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+
     <div class="main">
 
         {% for i in range(PAGE_INFO['len']) %}
