@@ -16,33 +16,35 @@
 </head>
 <body>
     <nav>
-        <div class="logo text-shadow-default"><a href="/"> LoLStats </a></div>
-        <ul class="nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="#">Champions</a></li>
-        </ul>
-        <div class="search">
-            <form action="/lol">
-                <label for="username">Summoner</label>
-                <input type="text" name="username">
-                <select name="region" class="nav-select">
-                    <option value="sg2">SG</option>
-                    <option value="na1">NA</option>
-                    <option value="euw1">EUW</option>
-                    <option value="eun1">EUNE</option>
-                    <option value="jp1">JP</option>
-                    <option value="br1">BR</option>
-                    <option value="la1">LA</option>
-                    <option value="la2">LA2</option>
-                    <option value="tr1">TR</option>
-                    <option value="ru">RU</option>
-                    <option value="ph2">PH</option>
-                    <option value="th2">TH</option>
-                    <option value="tw2">TW</option>
-                    <option value="vn2">VN</option>
-                </select>
-                <button type="submit" formaction="/lol" formmethod="post">Search</button>
-            </form>
+        <div class="nav-container">
+            <div class="logo text-shadow-default"><a href="/"> LoLStats </a></div>
+            <ul class="nav">
+                <li><a href="/">Home</a></li>
+                <!-- <li><a href="#">Champions</a></li> -->
+            </ul>
+            <div class="search">
+                <form action="/lol">
+                    <label for="username">Summoner</label>
+                    <input type="text" name="username">
+                    <select name="region" class="nav-select">
+                        <option value="sg2">SG</option>
+                        <option value="na1">NA</option>
+                        <option value="euw1">EUW</option>
+                        <option value="eun1">EUNE</option>
+                        <option value="jp1">JP</option>
+                        <option value="br1">BR</option>
+                        <option value="la1">LA</option>
+                        <option value="la2">LA2</option>
+                        <option value="tr1">TR</option>
+                        <option value="ru">RU</option>
+                        <option value="ph2">PH</option>
+                        <option value="th2">TH</option>
+                        <option value="tw2">TW</option>
+                        <option value="vn2">VN</option>
+                    </select>
+                    <button type="submit" formaction="/lol" formmethod="post">Search</button>
+                </form>
+            </div>
         </div> 
     </nav>
 

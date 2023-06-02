@@ -8,15 +8,18 @@
     --other-color-2: rgb(255 240 223);
     --secondary-color: rgb(255 212 88);
 
-    --win-color: rgb(0 27 41);
-    --win-color-br: rgb(0 41 62);
-    --lose-color: rgb(48 3 3);
-    --lose-color-br: rgb(68 0 0);
-    --remake-color: rgb(20 20 20);
-    --remake-color-br: rgb(32 32 32);
+    --win-color: rgb(7 60 90);
+    --win-color-2: rgb(7 80 120);
+    --win-color-3: rgb(7 100 150);
+    --lose-color: rgb(90 7 7);
+    --lose-color-2: rgb(120 10 10);
+    --lose-color-3: rgb(150 13 13);
+    --remake-color: rgb(30 30 30);
+    --remake-color-2: rgb(45 45 45);
+    --remake-color-3: rgb(55 55 55);
     --button-color: rgb(255 191 29);
 
-    --player-color: rgb(175 90 0 / 1);
+    --player-color: rgb(185 90 0);
 
     margin: 0px;
     padding: 0px;
@@ -34,6 +37,7 @@
 }
 
 .container{
+    display: grid;
     width: 100%;
 }
 
@@ -167,9 +171,23 @@
 
 nav {
     display: grid;
-    grid-template-columns: 0.5rem repeat(6, 1fr) 0.5rem;
-    grid-template-areas: "space logo nav nav nav search search";
+    justify-content: center;
+    height: 3rem;
+    min-height: 3rem;
+    background-color: var(--nav-bg-color);
+    font-weight: bolder;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas: "logo nav nav nav search search";
     gap: 0.5rem;
+    width: 100%;
+    max-width: 73rem;
     height: 3rem;
     min-height: 3rem;
     background-color: var(--nav-bg-color);
@@ -193,10 +211,7 @@ nav a {
 
 .logo {
     grid-area: logo;
-    justify-self: center;
     align-self: center;
-    display: grid;
-    justify-content: center;
     width: 100%;
 }
 .logo a:visited {
@@ -228,7 +243,7 @@ nav a {
     .search > form{
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: end;
     }
 
 nav input[type="text"] {
@@ -354,9 +369,11 @@ nav button:active {
 
 .content {
     display: grid;
-    grid-template-columns: repeat(6,1fr);
-    grid-template-areas: "sidebar-left Main Main Main Main sidebar-right";
+    justify-self: center;
+    grid-template-columns: 0.65fr .65fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "sidebar-left sidebar-left Main Main Main Main";
     max-height: min-content;
+    max-width: 73rem;
     font-size: 1rem;
     color: var(--other-color-2);
 }
@@ -366,21 +383,85 @@ nav button:active {
     display: grid;
     grid-template-columns: 1fr;
     width: 100%;
+    max-width: 55rem;
     margin-top: 2rem;
     padding: 0.5rem;
 }
+
+.profile {
+    grid-area: sidebar-left;
+    justify-self: end;
+    display: grid;
+    justify-items: end;
+    width: 100%;
+    max-width: 18rem;
+    height: max-content;
+    margin-top: 2rem;
+    padding: 0.5rem;
+}
+    .profile-child {
+        display: grid;
+        width: 100%;
+        max-width: 18rem;
+        height: fit-content;
+        margin: 0.2rem;
+        padding: 0.3rem;
+        border: 0.15rem;
+        border-radius: 0.5rem;
+        font-size: 0.8rem;
+        overflow: auto;
+        background-color: var(--player-color);
+    }
+
+    .summoner{
+        text-align: center;
+        color: rgb(255 240 200)
+    }
+
+    .unranked{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+        .unranked-attribute{
+            text-align: left;
+            color: black;
+        }
+        .unranked-value{
+            text-align: end;
+        }
+
+    .rank-description{
+        display: grid;
+        color: black;
+    }
+    .rank-details{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+        .rank-attributes{
+            display: grid;
+            justify-items: end;
+            padding-right: 1rem;
+        }
+        .rank-values {
+            display: grid;
+            padding-left: 1rem;
+        }
+
+    .profile-rank-img{
+        max-width: 10rem;
+    }
 
 /* -------------------------------------------------------------------------------------------------------------- */
 .match {
     justify-self: center;
     align-self: center;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 0.15fr;
+    grid-template-columns: 0.65fr 1fr 1fr 1fr 0.15fr;
     grid-template-areas:
         "match-data iconz stats players stats-button"
         "full-stats full-stats full-stats full-stats full-stats";
     width: 100%;
-    max-width: 70rem;
     margin: 0.2rem;
     padding: 0.3rem;
     border: 0.15rem;
@@ -395,15 +476,15 @@ nav button:active {
     }
     .match-win {
         background-color: var(--win-color);
-        border-color: var(--win-color-br);
+        border-color: var(--win-color-2);
     }
     .match-lose {
         background-color: var(--lose-color);
-        border-color: var(--lose-color-br);
+        border-color: var(--lose-color-2);
     }
     .match-remake {
         background-color: var(--remake-color);
-        border-color: var(--remake-color-br);
+        border-color: var(--remake-color-2);
     }
     .ward-icon{
         border-radius: 50%;
@@ -412,8 +493,9 @@ nav button:active {
     .match-info {
         grid-area: match-data;
         display: grid;
-        justify-content: space-around;
+        justify-content: start;
         align-content: space-evenly;
+        padding-left: 1rem;
     }
 
     .player-icon {
@@ -426,7 +508,7 @@ nav button:active {
             "items items items items items items items";
         padding-top: 0.3rem;
         padding-bottom: 0.3rem;
-        max-width: 15rem;
+        max-width: 12.5rem;
     }
         .player-icon-child {
             align-self: center;
@@ -563,22 +645,22 @@ nav button:active {
         color: var(--other-color-2);
     }
     .stats-button-win {
-        background-color: rgb(0 37 55);
+        background-color: var(--win-color-2);
     }
     .stats-button-win:hover {
-        background-color: rgb(0 45 66);
+        background-color: var(--win-color-3);
     }
     .stats-button-lose {
-        background-color: rgb(70 6 7);
+        background-color: var(--lose-color-2);
     }
     .stats-button-lose:hover {
-        background-color: rgb(80 6 7);
+        background-color: var(--lose-color-3);
     }
     .stats-button-remake {
-        background-color: rgb(34 34 34);
+        background-color:var(--remake-color-2);
     }
     .stats-button-remake:hover {
-        background-color: rgb(44 44 44);
+        background-color: var(--remake-color-3);
     }
         
 /* All Stats ---------------------------- */

@@ -35,21 +35,23 @@ def Lol():
 def MatchHistory(region, username):
     shard = RD.getShard(region)
     version = RD.getVersion(api, region)
+
     user_info = UID.getUser(api, region, username)
+    profile = UID.getRankInfo(api, region, user_info['summonerID'])
 
     match_ids = MH.getMatchIDs(api, shard, user_info['puuID'],)
     match_details = MH.getAllMatchDetails(api, shard, match_ids)
     match_info = MH.getMatchInfo(match_details)
     match_player_info = MH.getMatchPlayersDetails(version, match_details)
 
-    live_player_info = LG.getLiveGameInfo(api, region, version, user_info['summonerID'])
+    # live_player_info = LG.getLiveGameInfo(api, region, version, user_info['summonerID'])
     PageInfo = {
         'Title': f"{user_info['name']} - Match History",
         'Username': user_info['name'], 
         'len': len(match_player_info),
         'region': region 
     }
-    return render_template('MatchHistory.html', PAGE_INFO=PageInfo, Player_Details=match_player_info, Match_Details=match_info)
+    return render_template('MatchHistory.html', PAGE_INFO=PageInfo, Player_Details=match_player_info, Match_Details=match_info, Profile=profile )
 
 # TEST ------------------------------------------------------------------------------------------------
 
@@ -68,7 +70,7 @@ def TestJSON(region, username):
     version = RD.getVersion(api, region)
 
     user_info = UID.getUser(api, region, username)
-    rankdetails = UID.getRankInfo(api, region, user_info['summonerID'])
+    profile = UID.getRankInfo(api, region, user_info['summonerID'])
 
     match_ids = MH.getMatchIDs(api, shard, user_info['puuID'],)
     match_details = MH.getAllMatchDetails(api, shard, match_ids)
@@ -76,7 +78,7 @@ def TestJSON(region, username):
     match_player_info = MH.getMatchPlayersDetails(version, match_details)
     
     live_player_info = LG.getLiveGameInfo(api, region, version, user_info['summonerID'])
-    return match_details[0]
+    return profile
 
 #------------------------------------------------------------------------------------------------------
 
